@@ -1,0 +1,29 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .card__link {
+        display: block;
+        height: 100%;
+    }
+
+    .card__image {
+        width: 100%;
+        height: auto;
+    }
+
+    .card__body {
+        padding: 0.5rem; // Adjust this padding as necessary
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .card__title {
+        font-size: 1rem; // Adjust this font size as necessary
+        text-align: center;
+        margin: 0;
+    }
+}

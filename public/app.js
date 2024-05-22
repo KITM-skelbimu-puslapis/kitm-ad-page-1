@@ -9,28 +9,76 @@
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_hello__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/hello */ "./src/modules/hello.js");
+/* harmony import */ var _modules_cardsCreation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/cardsCreation */ "./src/modules/cardsCreation.js");
 
-(0,_modules_hello__WEBPACK_IMPORTED_MODULE_0__["default"])();
+(0,_modules_cardsCreation__WEBPACK_IMPORTED_MODULE_0__.createCards)(_modules_cardsCreation__WEBPACK_IMPORTED_MODULE_0__.items);
 
 /***/ }),
 
-/***/ "./src/modules/hello.js":
-/*!******************************!*\
-  !*** ./src/modules/hello.js ***!
-  \******************************/
+/***/ "./src/modules/cardsCreation.js":
+/*!**************************************!*\
+  !*** ./src/modules/cardsCreation.js ***!
+  \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   createCards: () => (/* binding */ createCards),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   items: () => (/* binding */ items)
 /* harmony export */ });
-var hello = function hello() {
-  var h1 = document.createElement('h1');
-  h1.textContent = 'Kas cia vyksta';
-  document.querySelector('body').appendChild(h1);
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (hello);
+var items = [{
+  id: 1,
+  name: "Furniture",
+  imageUrl: "https://via.placeholder.com/150",
+  link: "https://example.com/page1"
+}, {
+  id: 2,
+  name: "Cars",
+  imageUrl: "https://via.placeholder.com/150",
+  link: "https://example.com/page1"
+}, {
+  id: 3,
+  name: "Pets",
+  imageUrl: "https://via.placeholder.com/150",
+  link: "https://example.com/page1"
+}, {
+  id: 4,
+  name: "Books",
+  imageUrl: "https://via.placeholder.com/150",
+  link: "https://example.com/page1"
+}, {
+  id: 5,
+  name: "Electronics",
+  imageUrl: "https://via.placeholder.com/150",
+  link: "https://example.com/page1"
+}, {
+  id: 6,
+  name: "Sports",
+  imageUrl: "https://via.placeholder.com/150",
+  link: "https://example.com/page1"
+}, {
+  id: 7,
+  name: "Food",
+  imageUrl: "https://via.placeholder.com/150",
+  link: "https://example.com/page1"
+}, {
+  id: 8,
+  name: "Beauty",
+  imageUrl: "https://via.placeholder.com/150",
+  link: "https://example.com/page1"
+}];
+function createCards(items) {
+  var container = document.getElementById('card-container');
+  container.classList.add('row');
+  items.forEach(function (item) {
+    var card = document.createElement('div');
+    card.className = 'col-lg-3 col-md-4 col-sm-6 mb-4';
+    card.innerHTML = "\n<div class=\"card\">\n    <a href=\"".concat(item.link, "\" class=\"card__link\">\n        <img src=\"").concat(item.imageUrl, "\" class=\"card__image\" alt=\"").concat(item.name, "\">\n        <div class=\"card__body\">\n            <h5 class=\"card__title\">").concat(item.name, "</h5>\n        </div>\n    </a>\n</div>\n\n        ");
+    container.appendChild(card);
+  });
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createCards);
 
 /***/ }),
 
@@ -185,7 +233,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
 /******/ 		
-/******/ 		var chunkLoadingGlobal = globalThis["webpackChunkbase"] = globalThis["webpackChunkbase"] || [];
+/******/ 		var chunkLoadingGlobal = self["webpackChunkbase"] = self["webpackChunkbase"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();
