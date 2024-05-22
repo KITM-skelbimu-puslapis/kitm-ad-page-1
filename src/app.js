@@ -1,2 +1,3 @@
-import hello from "./modules/hello";
-hello()
+import insertFooter from "./modules/insertFooter";
+
+insertFooter();

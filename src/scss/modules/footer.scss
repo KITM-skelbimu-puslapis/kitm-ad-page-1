@@ -1,0 +1,22 @@
+.custom-footer {
+    font-size: 0.7em;
+
+    a, a:link, a:visited, a:hover, a:active {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    section {
+        width: 280px;
+    }
+
+    &__help-section {
+        li {
+            padding-left: 20px;
+        }
+    }
+
+    &__copyright {
+        font-size: 0.7em;
+    }
+}
