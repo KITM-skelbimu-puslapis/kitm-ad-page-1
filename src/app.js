@@ -1,2 +1,4 @@
-import hello from "./modules/hello";
-hello()
+import createGuestNav from "./modules/guestNav";
+
+
+createGuestNav()
