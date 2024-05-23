@@ -11,9 +11,44 @@
     <!-- Sections that can be used with document.querySelector() to place new html, correct semantically:-->
     <header></header>
     <main></main>
-    <footer></footer>
+    <footer
+      class="custom-footer d-lg-flex flex-row flex-wrap justify-content-evenly bg-body-tertiary"
+    >
+      <div class="row p-3">
+        <div class="col-lg col-md-5">
+          <section class="custom-footer__help-section container">
+            <p class="mb-0 fw-bold">Customer Support:</p>
+            <ul class="list-unstyled">
+              <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+              <li>
+                <a href="mailto:support@example.com">support@example.com</a>
+              </li>
+              <li>Monday - Friday, 9 AM - 5 PM</li>
+            </ul>
+          </section>
+        </div>
+        <div class="col-lg col-md-5">
+          <section class="container">
+            <ul class="list-unstyled">
+              <li><a class="fw-bold" href="/faq">FAQ</a></li>
+              <li>
+                <a class="fw-bold" href="/privacy-policy">Privacy Policy</a>
+              </li>
+              <li>
+                <a class="fw-bold" href="/terms-of-service">Terms of Service</a>
+              </li>
+            </ul>
+          </section>
+        </div>
+        <p class="custom-footer__copyright w-100 text-center mb-0">&#169;Ad Page</p>
+      </div>
+    </footer>
     <!-- Added Bootstrap script (needed for clicking functionality, e.g. for dropdowns): -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
     <script src="app.js"></script>
   </body>
 </html>
