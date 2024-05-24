@@ -1,4 +1,4 @@
-export const registrationForm = () => {
+const registrationForm = () => {
   const main = document.querySelector("main");
   const registrationSection = document.createElement("section");
   registrationSection.classList.add("registration-form", "d-flex", "flex-column", "justify-content-center", "align-items-center");
@@ -41,4 +41,4 @@ export const registrationForm = () => {
   new bootstrap.Popover(passwordPopoverTrigger);
 };
 
-//  
+export default registrationForm;

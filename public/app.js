@@ -2203,13 +2203,32 @@ function getModularInstance(service) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_cardsCreation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/cardsCreation */ "./src/modules/cardsCreation.js");
-/* harmony import */ var _modules_registrationForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/registrationForm */ "./src/modules/registrationForm.js");
-/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/esm/index.esm.js");
+/* harmony import */ var _modules_firebase__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/_firebase */ "./src/modules/_firebase.js");
+/* harmony import */ var _modules_cardsCreation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/cardsCreation */ "./src/modules/cardsCreation.js");
+/* harmony import */ var _modules_registrationForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/registrationForm */ "./src/modules/registrationForm.js");
 // JS modules imported:
 
 
 
+
+// Main application logic to render the page:
+(0,_modules_cardsCreation__WEBPACK_IMPORTED_MODULE_1__.createCards)(_modules_cardsCreation__WEBPACK_IMPORTED_MODULE_1__.items);
+(0,_modules_registrationForm__WEBPACK_IMPORTED_MODULE_2__["default"])();
+
+/***/ }),
+
+/***/ "./src/modules/_firebase.js":
+/*!**********************************!*\
+  !*** ./src/modules/_firebase.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/esm/index.esm.js");
 // Firebase functions imported:
 
 
@@ -2222,11 +2241,8 @@ var firebaseConfig = {
   messagingSenderId: "809165576603",
   appId: "1:809165576603:web:c6c81f9fcc5a137904693e"
 };
-var app = (0,firebase_app__WEBPACK_IMPORTED_MODULE_2__.initializeApp)(firebaseConfig);
-
-// Main application logic to render the page:
-(0,_modules_cardsCreation__WEBPACK_IMPORTED_MODULE_0__.createCards)(_modules_cardsCreation__WEBPACK_IMPORTED_MODULE_0__.items);
-(0,_modules_registrationForm__WEBPACK_IMPORTED_MODULE_1__.registrationForm)();
+var app = (0,firebase_app__WEBPACK_IMPORTED_MODULE_0__.initializeApp)(firebaseConfig);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (app);
 
 /***/ }),
 
@@ -2307,7 +2323,7 @@ function createCards(items) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   registrationForm: () => (/* binding */ registrationForm)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var registrationForm = function registrationForm() {
   var main = document.querySelector("main");
@@ -2323,8 +2339,7 @@ var registrationForm = function registrationForm() {
   var passwordPopoverTrigger = document.getElementById('floatingPassword');
   new bootstrap.Popover(passwordPopoverTrigger);
 };
-
-//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (registrationForm);
 
 /***/ }),
 
