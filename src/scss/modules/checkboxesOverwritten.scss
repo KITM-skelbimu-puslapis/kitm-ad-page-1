@@ -1,0 +1,6 @@
+@import '_variables.scss';
+
+.form-check-input:checked {
+    background-color: $main-grey;
+    border-color: $main-grey;
+}

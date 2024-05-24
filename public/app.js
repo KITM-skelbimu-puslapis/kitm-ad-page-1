@@ -2204,8 +2204,10 @@ function getModularInstance(service) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_cardsCreation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/cardsCreation */ "./src/modules/cardsCreation.js");
-/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/esm/index.esm.js");
+/* harmony import */ var _modules_registrationForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/registrationForm */ "./src/modules/registrationForm.js");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/esm/index.esm.js");
 // JS modules imported:
+
 
 
 // Firebase functions imported:
@@ -2220,10 +2222,11 @@ var firebaseConfig = {
   messagingSenderId: "809165576603",
   appId: "1:809165576603:web:c6c81f9fcc5a137904693e"
 };
-var app = (0,firebase_app__WEBPACK_IMPORTED_MODULE_1__.initializeApp)(firebaseConfig);
+var app = (0,firebase_app__WEBPACK_IMPORTED_MODULE_2__.initializeApp)(firebaseConfig);
 
 // Main application logic to render the page:
 (0,_modules_cardsCreation__WEBPACK_IMPORTED_MODULE_0__.createCards)(_modules_cardsCreation__WEBPACK_IMPORTED_MODULE_0__.items);
+(0,_modules_registrationForm__WEBPACK_IMPORTED_MODULE_1__.registrationForm)();
 
 /***/ }),
 
@@ -2292,6 +2295,33 @@ function createCards(items) {
   });
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createCards);
+
+/***/ }),
+
+/***/ "./src/modules/registrationForm.js":
+/*!*****************************************!*\
+  !*** ./src/modules/registrationForm.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   registrationForm: () => (/* binding */ registrationForm)
+/* harmony export */ });
+var registrationForm = function registrationForm() {
+  var main = document.querySelector("main");
+  var registrationSection = document.createElement("section");
+  registrationSection.classList.add("registration-form", "d-flex", "flex-column", "justify-content-center", "align-items-center");
+  var registrationContainer = document.createElement("div");
+  registrationContainer.classList.add("registration-form__form-container", "d-flex", "flex-column", "justify-content-center", "align-items-center");
+  var registrationForm = document.createElement("form");
+  //   registrationForm.classList.add("d-flex", "flex-column", "justify-content-center", "align-items-center");
+  registrationForm.innerHTML = "<div class=\"form-floating my-3\">\n  <input type=\"text\" class=\"form-control\" id=\"floatingUsername\" placeholder=\"Username\" required>\n  <label for=\"floatingUsername\">Username</label>\n</div>\n  <div class=\"form-floating mb-3\">\n  <input type=\"email\" class=\"form-control\" id=\"floatingEmail\" placeholder=\"name@example.com\" required>\n  <label for=\"floatingEmail\">Email</label>\n</div>\n<div class=\"form-floating mb-5\">\n  <input type=\"password\" class=\"form-control\" id=\"floatingPassword\" placeholder=\"Password\" required>\n  <label for=\"floatingPassword\">Password</label>\n</div>\n<div class=\"mb-5\">\n<div class=\"form-check \">\n  <input class=\"form-check-input\" type=\"checkbox\" value=\"\" id=\"checkbox-terms\" required>\n  <label class=\"form-check-label\" for=\"checkbox-terms\">\n    I have read and agree to the <a class=\"registration-form__policy-link\" href=\"\">Terms of Service</a>.\n  </label>\n</div>\n<div class=\"form-check\">\n  <input class=\"form-check-input\" type=\"checkbox\" value=\"\" id=\"checkbox-privacy\" required>\n  <label class=\"form-check-label\" for=\"checkbox-privacy\">\n    I have read and agree to the <a class=\"registration-form__policy-link\" href=\"\">Privacy Policy</a>.\n  </label>\n</div>\n</div>\n<div class=\"d-flex justify-content-center mb-3\">\n    <button type=\"submit\" class=\"btn btn-secondary\">Sign in</button>\n  </div>";
+  registrationContainer.appendChild(registrationForm);
+  registrationSection.appendChild(registrationContainer);
+  main.appendChild(registrationSection);
+};
 
 /***/ }),
 

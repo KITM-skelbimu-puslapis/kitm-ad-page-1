@@ -1,5 +1,6 @@
 // JS modules imported:
 import { items, createCards } from "./modules/cardsCreation";
+import { registrationForm } from "./modules/registrationForm";
 
 // Firebase functions imported:
 import { initializeApp } from "firebase/app";
@@ -17,3 +18,4 @@ const app = initializeApp(firebaseConfig);
 
 // Main application logic to render the page:
 createCards(items);
+registrationForm();
