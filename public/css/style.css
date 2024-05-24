@@ -11965,6 +11965,11 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.form-check-input:checked {
+  background-color: #6c757e;
+  border-color: #6c757e;
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -12006,4 +12011,77 @@ textarea.form-control-lg {
 }
 .custom-footer__copyright {
   font-size: 0.7em;
+}
+
+.link-style, link-style:link {
+  color: #6c757e;
+  text-decoration: none;
+}
+
+.link-style:hover, .link-style:active {
+  color: #919294;
+}
+
+.registration-form {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+.registration-form__form-container form {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 0.375rem;
+}
+.registration-form__form-container form button {
+  width: 120px;
+  height: 40px;
+}
+
+.registration-form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-size: cover;
+  z-index: -2;
+}
+
+.registration-form::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+@media (max-width: 481px) {
+  .registration-form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: none;
+    background-size: cover;
+    z-index: -2;
+  }
+  .registration-form::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    opacity: 0;
+    z-index: -1;
+  }
 }

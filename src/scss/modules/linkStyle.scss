@@ -1,0 +1,8 @@
+.link-style, link-style:link {
+    color: $main-grey;
+    text-decoration: none;
+}
+
+.link-style:hover, .link-style:active {
+    color: $secondary-grey;
+}
