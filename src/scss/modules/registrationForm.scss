@@ -1,5 +1,6 @@
 @import '_mixins.scss';
 @import '_variables';
+@import 'linkStyle';
 
 .registration-form {
     @include size(100%, 100vh);
@@ -15,15 +16,6 @@
                 @include size(120px, 40px);
             }
         }
-    }
-
-    &__policy-link, &__policy-link:link {
-        color: $main-grey;
-        text-decoration: none;
-    }
-
-    &__policy-link:hover, &__policy-link:active {
-        color: $secondary-grey;
     }
 }
 

@@ -12013,6 +12013,15 @@ textarea.form-control-lg {
   font-size: 0.7em;
 }
 
+.link-style, link-style:link {
+  color: #6c757e;
+  text-decoration: none;
+}
+
+.link-style:hover, .link-style:active {
+  color: #919294;
+}
+
 .registration-form {
   width: 100%;
   height: 100vh;
@@ -12026,13 +12035,6 @@ textarea.form-control-lg {
 .registration-form__form-container form button {
   width: 120px;
   height: 40px;
-}
-.registration-form__policy-link, .registration-form__policy-link:link {
-  color: #6c757e;
-  text-decoration: none;
-}
-.registration-form__policy-link:hover, .registration-form__policy-link:active {
-  color: #919294;
 }
 
 .registration-form::before {

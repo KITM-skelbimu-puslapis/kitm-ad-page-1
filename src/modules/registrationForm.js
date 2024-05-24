@@ -22,13 +22,13 @@ export const registrationForm = () => {
 <div class="form-check ">
   <input class="form-check-input" type="checkbox" value="" id="checkbox-terms" required>
   <label class="form-check-label" for="checkbox-terms">
-    I have read and agree to the <a class="registration-form__policy-link" href="">Terms of Service</a>.
+    I have read and agree to the <a class="link-style" href="">Terms of Service</a>.
   </label>
 </div>
 <div class="form-check">
   <input class="form-check-input" type="checkbox" value="" id="checkbox-privacy" required>
   <label class="form-check-label" for="checkbox-privacy">
-    I have read and agree to the <a class="registration-form__policy-link" href="">Privacy Policy</a>.
+    I have read and agree to the <a class="link-style" href="">Privacy Policy</a>.
   </label>
 </div>
 </div>
