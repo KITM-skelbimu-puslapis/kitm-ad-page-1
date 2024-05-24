@@ -11989,4 +11989,20 @@ textarea.form-control-lg {
   font-size: 1rem;
   text-align: center;
   margin: 0;
+  
+.custom-footer {
+  font-size: 0.7em;
+}
+.custom-footer a, .custom-footer a:link, .custom-footer a:visited, .custom-footer a:hover, .custom-footer a:active {
+  text-decoration: none;
+  color: inherit;
+}
+.custom-footer section {
+  width: 280px;
+}
+.custom-footer__help-section li {
+  padding-left: 20px;
+}
+.custom-footer__copyright {
+  font-size: 0.7em;
 }
