@@ -13,7 +13,7 @@
             border-radius: 0.375rem;
 
             button {
-                @include size(120px, 40px);
+                @include size(100%, 40px);
             }
         }
     }
@@ -44,6 +44,12 @@
 }
 
 @media (max-width: 481px) {
+    .registration-form {
+        form {
+            border-radius: 0px;
+        }
+    }
+
     .registration-form::before {
         content: "";
         position: absolute;
