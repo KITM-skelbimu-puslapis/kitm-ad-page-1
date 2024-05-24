@@ -1,2 +1,3 @@
-import hello from "./modules/hello";
-hello()
+import { items, createCards } from './modules/cardsCreation';
+
+createCards(items);
