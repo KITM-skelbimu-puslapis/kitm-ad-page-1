@@ -1,0 +1,13 @@
+// This stylesheet contains custom classes that give style to particular elements.
+// The classes should be used to promote both the coherence of style across the webpage and the reuse of code.
+
+@import '_variables';
+
+.link-style, .link-style:link {
+    color: $main-grey;
+    text-decoration: none;
+}
+
+.link-style:hover, .link-style:active {
+    color: $secondary-grey;
+}

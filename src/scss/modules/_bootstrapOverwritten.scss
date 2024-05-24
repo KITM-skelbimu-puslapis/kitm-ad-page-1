@@ -1,0 +1,10 @@
+// This stylesheet is for overwritting existing Bootstrap classes that may be used by everyone in the team to ensure everyone has the same style.
+// If you have an element that uses an overwritten class and it needs to be unique or look different, create a unique style for it in your component's stylesheet,
+// e.g. by using a different selector (element, id, class).
+
+@import '_variables.scss';
+
+.form-check-input:checked {
+    background-color: $main-grey;
+    border-color: $main-grey;
+}
