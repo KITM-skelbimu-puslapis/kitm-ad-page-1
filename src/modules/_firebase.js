@@ -8,7 +8,8 @@ const firebaseConfig = {
   projectId: "kitm-ad-page",
   storageBucket: "kitm-ad-page.appspot.com",
   messagingSenderId: "809165576603",
-  appId: "1:809165576603:web:c6c81f9fcc5a137904693e"
+  appId: "1:809165576603:web:c6c81f9fcc5a137904693e",
+  databaseURL: "https://kitm-ad-page-default-rtdb.europe-west1.firebasedatabase.app/"
 };
 
 const app = initializeApp(firebaseConfig);

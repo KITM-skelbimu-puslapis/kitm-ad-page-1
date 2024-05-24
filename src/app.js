@@ -1,8 +1,12 @@
 // JS modules imported:
 import app from "./modules/_firebase";
 import { items, createCards } from "./modules/cardsCreation";
-import registrationForm from "./modules/registrationForm";
+import { renderRegistrationForm, registerUser}  from "./modules/registrationForm";
 
 // Main application logic to render the page:
+// Homepage:
 createCards(items);
-registrationForm();
+
+// Registration:
+renderRegistrationForm();
+registerUser();
