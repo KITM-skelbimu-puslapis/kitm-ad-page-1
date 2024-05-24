@@ -1,5 +1,6 @@
 @import '~bootstrap';
-@import 'modules/checkboxesOverwritten.scss';
+@import 'modules/_bootstrapOverwritten';
+@import 'modules/_globalCustomClass';
 @import 'sectionAndCards';
 @import 'modules/footer.scss';
 @import 'modules/registrationForm.scss'
