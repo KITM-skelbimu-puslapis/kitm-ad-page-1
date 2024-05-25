@@ -1,5 +1,6 @@
-import app from "./_firebase";
+import { app, database } from "./_firebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { ref, set, child, get } from "firebase/database";
 
 // To render the registration form:
 export const renderRegistrationForm = () => {
@@ -55,39 +56,105 @@ export const renderRegistrationForm = () => {
   registrationSection.appendChild(registrationContainer);
   main.appendChild(registrationSection);
   const passwordPopoverTrigger = document.getElementById("register-password");
-  new bootstrap.Popover(passwordPopoverTrigger);
+  new bootstrap.Popover(passwordPopoverTrigger, {
+    trigger: 'focus'
+  });
 };
 
-// To send new user data to DB after validation:
-const auth = getAuth();
-const sendUserData = () => {
-  const email = document.getElementById("register-email").value;
-  const password = document.getElementById("register-password").value;
-  // const username = document.getElementById("register-username").value;
-  // the authentication sectio does not accept username. Not sure what to do with the field at the moment, but user registration works.
-  // Firebase does its own validation for duplicate profiles.
+// To create a validation message:
+const createRegistrationMessage = (text) => {
+  const registrationForm = document.getElementById("registration-form");
+  const registrationMessage = document.createElement("p");
+  registrationMessage.textContent = text;
+  registrationForm.appendChild(registrationMessage);
+  setTimeout(() => {
+    registrationForm.removeChild(registrationMessage);
+  }, "5000");
+};
 
-  createUserWithEmailAndPassword(auth, email, password)
+// To check if a username isn't taken:
+const checkUsernameAvailable = async () => {
+  const username = document.getElementById("register-username");
+  const dbRef = ref(database);
+  try {
+    const snapshot = await get(child(dbRef, "users"));
+    if (snapshot.exists()) {
+      let userEntries = snapshot.val();
+      for (let userId in userEntries) {
+        if (userEntries[userId].username === username.value) {
+          console.log("Username is taken");
+          return false;
+        }
+      }
+      console.log("Username is available");
+      return true;
+    } else {
+      console.log("No database available");
+      createRegistrationMessage("Oops! There was an issue.");
+      return false;
+    }
+  } catch (error) {
+    console.error(error);
+    createRegistrationMessage("Oops! There was an issue.");
+    return false;
+  }
+};
+
+// To send new user data to "Authentication" after validation and save it in DB:
+const sendUserData = () => {
+  const auth = getAuth();
+  let email = document.getElementById("register-email");
+  let password = document.getElementById("register-password");
+  let username = document.getElementById("register-username");
+
+  createUserWithEmailAndPassword(auth, email.value, password.value)
     .then((userCredential) => {
       const user = userCredential.user;
+      set(ref(database, "users/" + user.uid), {
+        username: username.value,
+        email: email.value,
+        role: "regularUser",
+        registrationDate: new Date().toLocaleString(),
+      });
+      createRegistrationMessage("Success! Thank you for registering.");
       console.log("User created");
+      email.value = "";
+      password.value = "";
+      username.value = "";
+      document.getElementById("register-checkbox-terms").checked = false;
+      document.getElementById("register-checkbox-privacy").checked = false;
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(errorMessage);
+      console.log("User creation failed.", errorCode, errorMessage);
+      createRegistrationMessage(
+        "Oops! Looks like this email is already registered."
+      );
     });
 };
 
-// To validate input and create user:
 export const registerUser = () => {
-  document.getElementById("register-btn").onclick = (e) => {
-    e.preventDefault();
-    const registrationForm = document.getElementById("registration-form");
-    if (registrationForm.checkValidity()) {
-      sendUserData();
+  const registrationForm = document.getElementById("registration-form");
+  registrationForm.addEventListener("submit", (e) => {
+    if (!registrationForm.checkValidity()) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log("Form validation failed");
     } else {
-      console.log("wrong data");
+      e.preventDefault();
+      checkUsernameAvailable().then((isUsernameAvailable) => {
+        if (!isUsernameAvailable) {
+          console.log("Form validation failed");
+          createRegistrationMessage("Oops! This username is taken.");
+        } else {
+          console.log("Form validation succeeded");
+          sendUserData();
+        }
+      }).catch(error => {
+        console.error("Error checking username availability:", error);
+        createRegistrationMessage("Oops! There was an issue.");
+      });
     }
-  };
+  });
 };

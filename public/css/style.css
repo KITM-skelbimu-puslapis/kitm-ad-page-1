@@ -12039,6 +12039,10 @@ textarea.form-control-lg {
   width: 100%;
   height: 40px;
 }
+.registration-form__form-container form p {
+  text-align: center;
+  color: #6c757e;
+}
 
 .registration-form::before {
   content: "";

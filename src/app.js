@@ -1,5 +1,5 @@
 // JS modules imported:
-import app from "./modules/_firebase";
+import { app, database } from "./modules/_firebase";
 import { items, createCards } from "./modules/cardsCreation";
 import { renderRegistrationForm, registerUser}  from "./modules/registrationForm";
 
