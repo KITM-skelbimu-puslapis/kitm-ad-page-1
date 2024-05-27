@@ -9,7 +9,31 @@
   <body>
     <!-- Comments will be deleted once everyone is familiar with the base html file -->
     <!-- Sections that can be used with document.querySelector() to place new html, correct semantically:-->
-    <header></header>
+    <header>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Ad page</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+              <li class="dropdown">
+                <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Categories
+                </button>
+                <ul class="dropdown-menu w-25">
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex w-100" role="search">
+              <input class="form-control me-2 w-100" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-white" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
     <main>
       <section class="container mt-5">
         <div id="card-container" class="row"></div>

@@ -2205,10 +2205,14 @@ function getModularInstance(service) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_cardsCreation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/cardsCreation */ "./src/modules/cardsCreation.js");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/esm/index.esm.js");
+/* harmony import */ var _modules_displayNav_displaynav__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/displayNav/displaynav */ "./src/modules/displayNav/displaynav.js");
 // JS modules imported:
 
 
 // Firebase functions imported:
+
+
+// header:
 
 
 // Database config and initialisation:
@@ -2292,6 +2296,280 @@ function createCards(items) {
   });
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createCards);
+
+/***/ }),
+
+/***/ "./src/modules/displayNav/displaynav.js":
+/*!**********************************************!*\
+  !*** ./src/modules/displayNav/displaynav.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   displayNav: () => (/* binding */ displayNav)
+/* harmony export */ });
+/* harmony import */ var _navCreateDropdownCategories__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navCreateDropdownCategories */ "./src/modules/displayNav/navCreateDropdownCategories.js");
+/* harmony import */ var _guestNav_displayGuestNavButtons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../guestNav/displayGuestNavButtons */ "./src/modules/guestNav/displayGuestNavButtons.js");
+/* harmony import */ var _userNav_displayUserNavButtons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../userNav/displayUserNavButtons */ "./src/modules/userNav/displayUserNavButtons.js");
+
+
+
+var displayNav = function displayNav() {
+  (0,_navCreateDropdownCategories__WEBPACK_IMPORTED_MODULE_0__.createDropdownCategories)();
+  // 0 - guest
+  // 1 - user/admin
+  var guest = 1;
+  if (guest === 0) {
+    (0,_guestNav_displayGuestNavButtons__WEBPACK_IMPORTED_MODULE_1__.guestNavButtonsDisplay)();
+  } else if (guest === 1) {
+    (0,_userNav_displayUserNavButtons__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  }
+};
+displayNav();
+
+
+/***/ }),
+
+/***/ "./src/modules/displayNav/navCreateDropdownCategories.js":
+/*!***************************************************************!*\
+  !*** ./src/modules/displayNav/navCreateDropdownCategories.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createDropdownCategories: () => (/* binding */ createDropdownCategories)
+/* harmony export */ });
+var dropdownCategories = [{
+  categoryName: 'Furniture'
+}, {
+  categoryName: 'Cars'
+}, {
+  categoryName: 'Pets'
+}, {
+  categoryName: 'Books'
+}, {
+  categoryName: 'Electronics'
+}, {
+  categoryName: 'Sports'
+}, {
+  categoryName: 'Food'
+}, {
+  categoryName: 'Beauty'
+}];
+var createDropdownCategories = function createDropdownCategories() {
+  var ul = document.querySelector('.dropdown-menu');
+  dropdownCategories.forEach(function (item) {
+    var li = document.createElement('li');
+    var liA = document.createElement('a');
+    liA.textContent = item.categoryName;
+    liA.setAttribute('class', 'dropdown-item');
+    liA.setAttribute('href', '#');
+    li.appendChild(liA);
+    ul.appendChild(li);
+  });
+};
+
+
+/***/ }),
+
+/***/ "./src/modules/guestNav/displayGuestNavButtons.js":
+/*!********************************************************!*\
+  !*** ./src/modules/guestNav/displayGuestNavButtons.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   guestNavButtonsDisplay: () => (/* binding */ guestNavButtonsDisplay)
+/* harmony export */ });
+/* harmony import */ var _navCreateLogin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navCreateLogin */ "./src/modules/guestNav/navCreateLogin.js");
+/* harmony import */ var _navCreateRegister__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./navCreateRegister */ "./src/modules/guestNav/navCreateRegister.js");
+
+
+var guestNavButtonsDisplay = function guestNavButtonsDisplay() {
+  var spotForAddNewListingButton = document.querySelector('#navbarSupportedContent');
+  var div = document.createElement('div');
+  div.setAttribute('class', 'nav-item d-flex flex-row justify-content-center align-items-center align-self-center text-center');
+  var loginButton = (0,_navCreateLogin__WEBPACK_IMPORTED_MODULE_0__.createLoginButton)();
+  var registerButton = (0,_navCreateRegister__WEBPACK_IMPORTED_MODULE_1__.createRegisterButton)();
+  div.appendChild(loginButton);
+  div.appendChild(registerButton);
+  spotForAddNewListingButton.appendChild(div);
+};
+
+
+/***/ }),
+
+/***/ "./src/modules/guestNav/navCreateLogin.js":
+/*!************************************************!*\
+  !*** ./src/modules/guestNav/navCreateLogin.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createLoginButton: () => (/* binding */ createLoginButton)
+/* harmony export */ });
+var createLoginButton = function createLoginButton() {
+  var loginButton = document.createElement('a');
+  loginButton.setAttribute('class', 'btn btn-white');
+  loginButton.setAttribute('type', 'button');
+  loginButton.setAttribute('href', '#');
+  loginButton.textContent = 'Login';
+  return loginButton;
+};
+
+
+/***/ }),
+
+/***/ "./src/modules/guestNav/navCreateRegister.js":
+/*!***************************************************!*\
+  !*** ./src/modules/guestNav/navCreateRegister.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createRegisterButton: () => (/* binding */ createRegisterButton)
+/* harmony export */ });
+var createRegisterButton = function createRegisterButton() {
+  var registerButton = document.createElement('a');
+  registerButton.setAttribute('class', 'btn btn-white');
+  registerButton.setAttribute('type', 'button');
+  registerButton.setAttribute('href', '#');
+  registerButton.textContent = 'Register';
+  return registerButton;
+};
+
+
+/***/ }),
+
+/***/ "./src/modules/userNav/displayUserNavButtons.js":
+/*!******************************************************!*\
+  !*** ./src/modules/userNav/displayUserNavButtons.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _navCreateAddNewListing__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navCreateAddNewListing */ "./src/modules/userNav/navCreateAddNewListing.js");
+/* harmony import */ var _navCreateMyAccount__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./navCreateMyAccount */ "./src/modules/userNav/navCreateMyAccount.js");
+
+
+var userNavButtonsDisplay = function userNavButtonsDisplay() {
+  var spotForAddNewListingButton = document.querySelector('#navbarSupportedContent');
+  var div = document.createElement('div');
+  div.setAttribute('class', 'nav-item d-flex flex-row justify-content-center align-items-center align-self-center text-center');
+  var addNewListingButton = (0,_navCreateAddNewListing__WEBPACK_IMPORTED_MODULE_0__.createAddNewListingButton)();
+  var myAccountButton = (0,_navCreateMyAccount__WEBPACK_IMPORTED_MODULE_1__.createMyAccountButton)();
+  div.appendChild(addNewListingButton);
+  div.appendChild(myAccountButton);
+  spotForAddNewListingButton.appendChild(div);
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (userNavButtonsDisplay);
+
+/***/ }),
+
+/***/ "./src/modules/userNav/navCreateAddNewListing.js":
+/*!*******************************************************!*\
+  !*** ./src/modules/userNav/navCreateAddNewListing.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createAddNewListingButton: () => (/* binding */ createAddNewListingButton)
+/* harmony export */ });
+var createAddNewListingButton = function createAddNewListingButton() {
+  var AddNewListingButton = document.createElement('a');
+  AddNewListingButton.setAttribute('class', 'btn btn-white');
+  AddNewListingButton.setAttribute('type', 'button');
+  AddNewListingButton.setAttribute('href', '#');
+  var icon = document.createElement('i');
+  icon.setAttribute('class', 'bi bi-calendar-plus');
+  icon.textContent = '+';
+  AddNewListingButton.appendChild(icon);
+  return AddNewListingButton;
+};
+
+
+/***/ }),
+
+/***/ "./src/modules/userNav/navCreateMyAccount.js":
+/*!***************************************************!*\
+  !*** ./src/modules/userNav/navCreateMyAccount.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createMyAccountButton: () => (/* binding */ createMyAccountButton)
+/* harmony export */ });
+var createDropdownMenu = function createDropdownMenu(items) {
+  var dropdownUl = document.createElement('ul');
+  dropdownUl.setAttribute('class', 'dropdown-menu');
+  items.forEach(function (item) {
+    var li = document.createElement('li');
+    var liA = document.createElement('a');
+    liA.textContent = item.DropdownItemName;
+    liA.setAttribute('class', 'dropdown-item');
+    liA.setAttribute('href', '#');
+    li.appendChild(liA);
+    dropdownUl.appendChild(li);
+  });
+  return dropdownUl;
+};
+var adminMyAccountButton = function adminMyAccountButton() {
+  var myAccountDropdownItems = [{
+    DropdownItemName: 'Manage listings'
+  }, {
+    DropdownItemName: 'Manage account'
+  }, {
+    DropdownItemName: 'Manage categories'
+  }];
+  return createDropdownMenu(myAccountDropdownItems);
+};
+var userMyAccountButton = function userMyAccountButton() {
+  var myAccountDropdownItems = [{
+    DropdownItemName: 'Manage listings'
+  }, {
+    DropdownItemName: 'Manage account'
+  }];
+  return createDropdownMenu(myAccountDropdownItems);
+};
+var createMyAccountButton = function createMyAccountButton() {
+  // 0 - user
+  // 1 - admin
+  var user = 1;
+  var myAccountDiv = document.createElement('div');
+  myAccountDiv.setAttribute('class', 'dropdown');
+  var myAccountA = document.createElement('button');
+  myAccountA.setAttribute('class', 'btn btn-white dropdown-toggle');
+  myAccountA.setAttribute('type', 'button');
+  myAccountA.setAttribute('data-bs-toggle', 'dropdown');
+  myAccountA.setAttribute('aria-expanded', 'false');
+  myAccountA.textContent = 'My account';
+  myAccountDiv.appendChild(myAccountA);
+  if (user == 0) {
+    myAccountDiv.appendChild(userMyAccountButton());
+  } else if (user == 1) {
+    myAccountDiv.appendChild(adminMyAccountButton());
+  }
+  return myAccountDiv;
+};
+
 
 /***/ }),
 

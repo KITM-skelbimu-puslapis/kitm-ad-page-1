@@ -4,6 +4,9 @@ import { items, createCards } from "./modules/cardsCreation";
 // Firebase functions imported:
 import { initializeApp } from "firebase/app";
 
+// header:
+import { displayNav } from "./modules/displayNav/displaynav";
+
 // Database config and initialisation:
 const firebaseConfig = {
   apiKey: "AIzaSyAU7X0jmLzpY1rFFKTFZ-FLyD0tvl0FDqU",
