@@ -11970,6 +11970,10 @@ textarea.form-control-lg {
   border-color: #6c757e;
 }
 
+.dropdown-menu.show {
+  left: -105px;
+}
+
 .link-style, .link-style:link {
   color: #6c757e;
   text-decoration: none;

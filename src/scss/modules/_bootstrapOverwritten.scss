@@ -8,3 +8,7 @@
     background-color: $main-grey;
     border-color: $main-grey;
 }
+
+.dropdown-menu.show {
+    left: -105px;
+}
