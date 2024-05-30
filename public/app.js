@@ -27247,7 +27247,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_firebase__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/_firebase */ "./src/modules/_firebase.js");
 /* harmony import */ var _modules_cardsCreation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/cardsCreation */ "./src/modules/cardsCreation.js");
 /* harmony import */ var _modules_registrationForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/registrationForm */ "./src/modules/registrationForm.js");
+/* harmony import */ var _modules_loginForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/loginForm */ "./src/modules/loginForm.js");
 // JS modules imported:
+
 
 
 
@@ -27259,6 +27261,10 @@ __webpack_require__.r(__webpack_exports__);
 // Registration:
 (0,_modules_registrationForm__WEBPACK_IMPORTED_MODULE_2__.renderRegistrationForm)();
 (0,_modules_registrationForm__WEBPACK_IMPORTED_MODULE_2__.registerUser)();
+
+// Render the login form
+(0,_modules_loginForm__WEBPACK_IMPORTED_MODULE_3__.renderLoginForm)();
+(0,_modules_loginForm__WEBPACK_IMPORTED_MODULE_3__.attachLoginHandler)();
 
 /***/ }),
 
@@ -27363,6 +27369,73 @@ function createCards(items) {
   });
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createCards);
+
+/***/ }),
+
+/***/ "./src/modules/loginForm.js":
+/*!**********************************!*\
+  !*** ./src/modules/loginForm.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   attachLoginHandler: () => (/* binding */ attachLoginHandler),
+/* harmony export */   renderLoginForm: () => (/* binding */ renderLoginForm)
+/* harmony export */ });
+/* harmony import */ var _firebase__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_firebase */ "./src/modules/_firebase.js");
+/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/auth */ "./node_modules/firebase/auth/dist/esm/index.esm.js");
+// login.js
+
+
+
+// To render the login form:
+var renderLoginForm = function renderLoginForm() {
+  var main = document.querySelector("main");
+  var loginSection = document.createElement("section");
+  loginSection.classList.add("login-form", "d-flex", "flex-column", "justify-content-center", "align-items-center");
+  var loginContainer = document.createElement("div");
+  loginContainer.classList.add("login-form__form-container", "d-flex", "flex-column", "justify-content-center", "align-items-center");
+  var loginForm = document.createElement("form");
+  loginForm.setAttribute("id", "login-form");
+  loginForm.innerHTML = "\n    <div class=\"form-floating my-3\">\n      <input type=\"email\" class=\"form-control\" id=\"login-email\" placeholder=\"name@example.com\" required>\n      <label for=\"login-email\">Email</label>\n    </div>\n    <div class=\"form-floating mb-3\">\n      <input type=\"password\" class=\"form-control\" id=\"login-password\" placeholder=\"Password\" required>\n      <label for=\"login-password\">Password</label>\n    </div>\n    <div class=\"d-flex justify-content-center mb-3\">\n      <button type=\"submit\" id=\"login-btn\" class=\"btn btn-secondary\">Login</button>\n    </div>";
+  loginContainer.appendChild(loginForm);
+  loginSection.appendChild(loginContainer);
+  main.appendChild(loginSection);
+};
+
+// To create a login message:
+var createLoginMessage = function createLoginMessage(text) {
+  var loginForm = document.getElementById("login-form");
+  var loginMessage = document.createElement("p");
+  loginMessage.textContent = text;
+  loginForm.appendChild(loginMessage);
+  setTimeout(function () {
+    loginForm.removeChild(loginMessage);
+  }, 5000);
+};
+
+// To handle login:
+var attachLoginHandler = function attachLoginHandler() {
+  var loginForm = document.getElementById("login-form");
+  loginForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.getAuth)();
+    var email = document.getElementById("login-email").value;
+    var password = document.getElementById("login-password").value;
+    (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.signInWithEmailAndPassword)(auth, email, password).then(function (userCredential) {
+      var user = userCredential.user;
+      createLoginMessage("Login successful! Welcome back.");
+      console.log("Logged in successfully:", user);
+    })["catch"](function (error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.error("Login failed:", errorCode, errorMessage);
+      createLoginMessage("Login failed. Please check your credentials and try again.");
+    });
+  });
+};
 
 /***/ }),
 
