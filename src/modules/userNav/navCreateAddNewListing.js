@@ -4,8 +4,7 @@ let createAddNewListingButton = () => {
     AddNewListingButton.setAttribute('type', 'button');
     AddNewListingButton.setAttribute('href', '#');
     const icon = document.createElement('i');
-    icon.setAttribute('class','bi bi-calendar-plus')
-    icon.textContent = '+';
+    icon.innerHTML = '<i class="bi bi-bag-plus-fill"></i>';
     AddNewListingButton.appendChild(icon);
     return AddNewListingButton;
 }

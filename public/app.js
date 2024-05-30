@@ -2361,15 +2361,19 @@ var dropdownCategories = [{
   categoryName: 'Beauty'
 }];
 var createDropdownCategories = function createDropdownCategories() {
-  var ul = document.querySelector('.dropdown-menu');
+  var dropdownMenu = document.querySelector('.dropdown-menu');
   dropdownCategories.forEach(function (item) {
     var li = document.createElement('li');
-    var liA = document.createElement('a');
-    liA.textContent = item.categoryName;
-    liA.setAttribute('class', 'dropdown-item');
-    liA.setAttribute('href', '#');
-    li.appendChild(liA);
-    ul.appendChild(li);
+    var a = document.createElement('a');
+    a.textContent = item.categoryName;
+    a.setAttribute('class', 'dropdown-item');
+    a.setAttribute('href', '#');
+    li.appendChild(a);
+    dropdownMenu.appendChild(li);
+    a.addEventListener('click', function () {
+      var button = document.querySelector('.dropdown-toggle');
+      button.textContent = item.categoryName;
+    });
   });
 };
 
@@ -2497,8 +2501,7 @@ var createAddNewListingButton = function createAddNewListingButton() {
   AddNewListingButton.setAttribute('type', 'button');
   AddNewListingButton.setAttribute('href', '#');
   var icon = document.createElement('i');
-  icon.setAttribute('class', 'bi bi-calendar-plus');
-  icon.textContent = '+';
+  icon.innerHTML = '<i class="bi bi-bag-plus-fill"></i>';
   AddNewListingButton.appendChild(icon);
   return AddNewListingButton;
 };
@@ -2523,7 +2526,7 @@ var createDropdownMenu = function createDropdownMenu(items) {
   items.forEach(function (item) {
     var li = document.createElement('li');
     var liA = document.createElement('a');
-    liA.textContent = item.DropdownItemName;
+    liA.innerHTML = item.DropdownItemName;
     liA.setAttribute('class', 'dropdown-item');
     liA.setAttribute('href', '#');
     li.appendChild(liA);
@@ -2552,15 +2555,15 @@ var userMyAccountButton = function userMyAccountButton() {
 var createMyAccountButton = function createMyAccountButton() {
   // 0 - user
   // 1 - admin
-  var user = 1;
+  var user = 0;
   var myAccountDiv = document.createElement('div');
   myAccountDiv.setAttribute('class', 'dropdown');
   var myAccountA = document.createElement('button');
-  myAccountA.setAttribute('class', 'btn btn-white dropdown-toggle');
+  myAccountA.setAttribute('class', 'btn btn-white dropdown-toggle ');
   myAccountA.setAttribute('type', 'button');
   myAccountA.setAttribute('data-bs-toggle', 'dropdown');
   myAccountA.setAttribute('aria-expanded', 'false');
-  myAccountA.textContent = 'My account';
+  myAccountA.innerHTML = '<i class="bi bi-person-fill"></i>';
   myAccountDiv.appendChild(myAccountA);
   if (user == 0) {
     myAccountDiv.appendChild(userMyAccountButton());
