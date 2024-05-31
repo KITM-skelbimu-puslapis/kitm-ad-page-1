@@ -11970,6 +11970,14 @@ textarea.form-control-lg {
   border-color: #6c757e;
 }
 
+.dropdown-menu.show {
+  left: -105px;
+}
+
+.category-dropdown-left {
+  left: 0 !important;
+}
+
 .link-style, .link-style:link {
   color: #6c757e;
   text-decoration: none;
@@ -12137,6 +12145,76 @@ textarea.form-control-lg {
     z-index: -2;
   }
   .registration-form::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    opacity: 0;
+    z-index: -1;
+  }
+}
+.login-form {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+.login-form__form-container form {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 0.375rem;
+}
+.login-form__form-container form button {
+  width: 100%;
+  height: 40px;
+}
+.login-form__form-container form p {
+  text-align: center;
+  color: #6c757e;
+}
+
+.login-form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-size: cover;
+  z-index: -2;
+}
+
+.login-form::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+@media (max-width: 481px) {
+  .login-form form {
+    border-radius: 0px;
+  }
+  .login-form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: none;
+    background-size: cover;
+    z-index: -2;
+  }
+  .login-form::after {
     content: "";
     position: absolute;
     top: 0;

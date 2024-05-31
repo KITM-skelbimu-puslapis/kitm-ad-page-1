@@ -27246,8 +27246,12 @@ function getModularInstance(service) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_firebase__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/_firebase */ "./src/modules/_firebase.js");
 /* harmony import */ var _modules_cardsCreation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/cardsCreation */ "./src/modules/cardsCreation.js");
-/* harmony import */ var _modules_registrationForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/registrationForm */ "./src/modules/registrationForm.js");
+/* harmony import */ var _modules_displayNav_displaynav__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/displayNav/displaynav */ "./src/modules/displayNav/displaynav.js");
+/* harmony import */ var _modules_registrationForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/registrationForm */ "./src/modules/registrationForm.js");
+/* harmony import */ var _modules_loginForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/loginForm */ "./src/modules/loginForm.js");
 // JS modules imported:
+
+
 
 
 
@@ -27257,8 +27261,12 @@ __webpack_require__.r(__webpack_exports__);
 (0,_modules_cardsCreation__WEBPACK_IMPORTED_MODULE_1__.createCards)(_modules_cardsCreation__WEBPACK_IMPORTED_MODULE_1__.items);
 
 // Registration:
-(0,_modules_registrationForm__WEBPACK_IMPORTED_MODULE_2__.renderRegistrationForm)();
-(0,_modules_registrationForm__WEBPACK_IMPORTED_MODULE_2__.registerUser)();
+(0,_modules_registrationForm__WEBPACK_IMPORTED_MODULE_3__.renderRegistrationForm)();
+(0,_modules_registrationForm__WEBPACK_IMPORTED_MODULE_3__.registerUser)();
+
+// Render the login form
+(0,_modules_loginForm__WEBPACK_IMPORTED_MODULE_4__.renderLoginForm)();
+(0,_modules_loginForm__WEBPACK_IMPORTED_MODULE_4__.attachLoginHandler)();
 
 /***/ }),
 
@@ -27367,6 +27375,235 @@ function createCards(items) {
     container.appendChild(card);
   });
 }
+
+/***/ }),
+
+/***/ "./src/modules/displayNav/displaynav.js":
+/*!**********************************************!*\
+  !*** ./src/modules/displayNav/displaynav.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   displayNav: () => (/* binding */ displayNav)
+/* harmony export */ });
+/* harmony import */ var _navCreateDropdownCategories__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navCreateDropdownCategories */ "./src/modules/displayNav/navCreateDropdownCategories.js");
+/* harmony import */ var _guestNav_displayGuestNavButtons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../guestNav/displayGuestNavButtons */ "./src/modules/guestNav/displayGuestNavButtons.js");
+/* harmony import */ var _userNav_displayUserNavButtons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../userNav/displayUserNavButtons */ "./src/modules/userNav/displayUserNavButtons.js");
+
+
+
+var displayNav = function displayNav() {
+  (0,_navCreateDropdownCategories__WEBPACK_IMPORTED_MODULE_0__.createDropdownCategories)();
+  // 0 - guest
+  // 1 - user/admin
+  var guest = 1;
+  if (guest === 0) {
+    (0,_guestNav_displayGuestNavButtons__WEBPACK_IMPORTED_MODULE_1__.guestNavButtonsDisplay)();
+  } else if (guest === 1) {
+    (0,_userNav_displayUserNavButtons__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  }
+};
+displayNav();
+
+
+/***/ }),
+
+/***/ "./src/modules/displayNav/navCreateDropdownCategories.js":
+/*!***************************************************************!*\
+  !*** ./src/modules/displayNav/navCreateDropdownCategories.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createDropdownCategories: () => (/* binding */ createDropdownCategories)
+/* harmony export */ });
+var dropdownCategories = [{
+  categoryName: 'Furniture'
+}, {
+  categoryName: 'Cars'
+}, {
+  categoryName: 'Pets'
+}, {
+  categoryName: 'Books'
+}, {
+  categoryName: 'Electronics'
+}, {
+  categoryName: 'Sports'
+}, {
+  categoryName: 'Food'
+}, {
+  categoryName: 'Beauty'
+}];
+var createDropdownCategories = function createDropdownCategories() {
+  var dropdownMenu = document.querySelector('.dropdown-menu');
+  dropdownCategories.forEach(function (item) {
+    var li = document.createElement('li');
+    var a = document.createElement('a');
+    a.textContent = item.categoryName;
+    a.setAttribute('class', 'dropdown-item');
+    a.setAttribute('href', '#');
+    li.appendChild(a);
+    dropdownMenu.appendChild(li);
+    a.addEventListener('click', function () {
+      var button = document.querySelector('.dropdown-toggle');
+      button.textContent = item.categoryName;
+    });
+  });
+};
+
+
+/***/ }),
+
+/***/ "./src/modules/guestNav/displayGuestNavButtons.js":
+/*!********************************************************!*\
+  !*** ./src/modules/guestNav/displayGuestNavButtons.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   guestNavButtonsDisplay: () => (/* binding */ guestNavButtonsDisplay)
+/* harmony export */ });
+/* harmony import */ var _navCreateLogin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navCreateLogin */ "./src/modules/guestNav/navCreateLogin.js");
+/* harmony import */ var _navCreateRegister__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./navCreateRegister */ "./src/modules/guestNav/navCreateRegister.js");
+
+
+var guestNavButtonsDisplay = function guestNavButtonsDisplay() {
+  var spotForAddNewListingButton = document.querySelector('#navbarSupportedContent');
+  var div = document.createElement('div');
+  div.setAttribute('class', 'nav-item d-flex flex-row justify-content-center align-items-center align-self-center text-center');
+  var loginButton = (0,_navCreateLogin__WEBPACK_IMPORTED_MODULE_0__.createLoginButton)();
+  var registerButton = (0,_navCreateRegister__WEBPACK_IMPORTED_MODULE_1__.createRegisterButton)();
+  div.appendChild(loginButton);
+  div.appendChild(registerButton);
+  spotForAddNewListingButton.appendChild(div);
+};
+
+
+/***/ }),
+
+/***/ "./src/modules/guestNav/navCreateLogin.js":
+/*!************************************************!*\
+  !*** ./src/modules/guestNav/navCreateLogin.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createLoginButton: () => (/* binding */ createLoginButton)
+/* harmony export */ });
+var createLoginButton = function createLoginButton() {
+  var loginButton = document.createElement('a');
+  loginButton.setAttribute('class', 'btn btn-white');
+  loginButton.setAttribute('type', 'button');
+  loginButton.setAttribute('href', '#');
+  loginButton.textContent = 'Login';
+  return loginButton;
+};
+
+
+/***/ }),
+
+/***/ "./src/modules/guestNav/navCreateRegister.js":
+/*!***************************************************!*\
+  !*** ./src/modules/guestNav/navCreateRegister.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createRegisterButton: () => (/* binding */ createRegisterButton)
+/* harmony export */ });
+var createRegisterButton = function createRegisterButton() {
+  var registerButton = document.createElement('a');
+  registerButton.setAttribute('class', 'btn btn-white');
+  registerButton.setAttribute('type', 'button');
+  registerButton.setAttribute('href', '#');
+  registerButton.textContent = 'Register';
+  return registerButton;
+};
+
+
+/***/ }),
+
+/***/ "./src/modules/loginForm.js":
+/*!**********************************!*\
+  !*** ./src/modules/loginForm.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   attachLoginHandler: () => (/* binding */ attachLoginHandler),
+/* harmony export */   renderLoginForm: () => (/* binding */ renderLoginForm)
+/* harmony export */ });
+/* harmony import */ var firebase_database__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/database */ "./node_modules/firebase/database/dist/esm/index.esm.js");
+/* harmony import */ var _firebase__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_firebase */ "./src/modules/_firebase.js");
+/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/auth */ "./node_modules/firebase/auth/dist/esm/index.esm.js");
+// login.js
+
+
+
+
+// To render the login form:
+var renderLoginForm = function renderLoginForm() {
+  var main = document.querySelector("main");
+  var loginSection = document.createElement("section");
+  loginSection.classList.add("login-form", "d-flex", "flex-column", "justify-content-center", "align-items-center");
+  var loginContainer = document.createElement("div");
+  loginContainer.classList.add("login-form__form-container", "d-flex", "flex-column", "justify-content-center", "align-items-center");
+  var loginForm = document.createElement("form");
+  loginForm.setAttribute("id", "login-form");
+  loginForm.innerHTML = "\n    <div class=\"form-floating my-3\">\n      <input type=\"email\" class=\"form-control\" id=\"login-email\" placeholder=\"name@example.com\" required>\n      <label for=\"login-email\">Email</label>\n    </div>\n    <div class=\"form-floating mb-3\">\n      <input type=\"password\" class=\"form-control\" id=\"login-password\" placeholder=\"Password\" required>\n      <label for=\"login-password\">Password</label>\n    </div>\n    <div class=\"d-flex justify-content-center mb-3\">\n      <button type=\"submit\" id=\"login-btn\" class=\"btn btn-secondary\">Login</button>\n    </div>";
+  loginContainer.appendChild(loginForm);
+  loginSection.appendChild(loginContainer);
+  main.appendChild(loginSection);
+};
+
+// To create a login message:
+var createLoginMessage = function createLoginMessage(text) {
+  var loginForm = document.getElementById("login-form");
+  var loginMessage = document.createElement("p");
+  loginMessage.textContent = text;
+  loginForm.appendChild(loginMessage);
+  setTimeout(function () {
+    loginForm.removeChild(loginMessage);
+  }, 5000);
+};
+
+// To handle login:
+var attachLoginHandler = function attachLoginHandler() {
+  var loginForm = document.getElementById("login-form");
+  loginForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.getAuth)();
+    var email = document.getElementById("login-email").value;
+    var password = document.getElementById("login-password").value;
+    (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.signInWithEmailAndPassword)(auth, email, password).then(function (userCredential) {
+      var user = userCredential.user;
+      var loginTime = new Date().toLocaleString();
+      (0,firebase_database__WEBPACK_IMPORTED_MODULE_0__.update)((0,firebase_database__WEBPACK_IMPORTED_MODULE_0__.ref)(_firebase__WEBPACK_IMPORTED_MODULE_1__.database, 'users/' + user.uid), {
+        lastLogin: loginTime
+      });
+      createLoginMessage("Login successful! Welcome back.");
+      console.log("Logged in successfully:", user);
+    })["catch"](function (error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.error("Login failed:", errorCode, errorMessage);
+      createLoginMessage("Login failed. Please check your credentials and try again.");
+    });
+  });
+};
 
 /***/ }),
 
@@ -27537,6 +27774,127 @@ var registerUser = function registerUser() {
     }
   });
 };
+
+/***/ }),
+
+/***/ "./src/modules/userNav/displayUserNavButtons.js":
+/*!******************************************************!*\
+  !*** ./src/modules/userNav/displayUserNavButtons.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _navCreateAddNewListing__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navCreateAddNewListing */ "./src/modules/userNav/navCreateAddNewListing.js");
+/* harmony import */ var _navCreateMyAccount__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./navCreateMyAccount */ "./src/modules/userNav/navCreateMyAccount.js");
+
+
+var userNavButtonsDisplay = function userNavButtonsDisplay() {
+  var spotForAddNewListingButton = document.querySelector('#navbarSupportedContent');
+  var div = document.createElement('div');
+  div.setAttribute('class', 'nav-item d-flex flex-row justify-content-center align-items-center align-self-center text-center');
+  var addNewListingButton = (0,_navCreateAddNewListing__WEBPACK_IMPORTED_MODULE_0__.createAddNewListingButton)();
+  var myAccountButton = (0,_navCreateMyAccount__WEBPACK_IMPORTED_MODULE_1__.createMyAccountButton)();
+  div.appendChild(addNewListingButton);
+  div.appendChild(myAccountButton);
+  spotForAddNewListingButton.appendChild(div);
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (userNavButtonsDisplay);
+
+/***/ }),
+
+/***/ "./src/modules/userNav/navCreateAddNewListing.js":
+/*!*******************************************************!*\
+  !*** ./src/modules/userNav/navCreateAddNewListing.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createAddNewListingButton: () => (/* binding */ createAddNewListingButton)
+/* harmony export */ });
+var createAddNewListingButton = function createAddNewListingButton() {
+  var AddNewListingButton = document.createElement('a');
+  AddNewListingButton.setAttribute('class', 'btn btn-white');
+  AddNewListingButton.setAttribute('type', 'button');
+  AddNewListingButton.setAttribute('href', '#');
+  var icon = document.createElement('i');
+  icon.innerHTML = '<i class="bi bi-bag-plus-fill"></i>';
+  AddNewListingButton.appendChild(icon);
+  return AddNewListingButton;
+};
+
+
+/***/ }),
+
+/***/ "./src/modules/userNav/navCreateMyAccount.js":
+/*!***************************************************!*\
+  !*** ./src/modules/userNav/navCreateMyAccount.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createMyAccountButton: () => (/* binding */ createMyAccountButton)
+/* harmony export */ });
+var createDropdownMenu = function createDropdownMenu(items) {
+  var dropdownUl = document.createElement('ul');
+  dropdownUl.setAttribute('class', 'dropdown-menu');
+  items.forEach(function (item) {
+    var li = document.createElement('li');
+    var liA = document.createElement('a');
+    liA.innerHTML = item.DropdownItemName;
+    liA.setAttribute('class', 'dropdown-item');
+    liA.setAttribute('href', '#');
+    li.appendChild(liA);
+    dropdownUl.appendChild(li);
+  });
+  return dropdownUl;
+};
+var adminMyAccountButton = function adminMyAccountButton() {
+  var myAccountDropdownItems = [{
+    DropdownItemName: 'Manage listings'
+  }, {
+    DropdownItemName: 'Manage account'
+  }, {
+    DropdownItemName: 'Manage categories'
+  }];
+  return createDropdownMenu(myAccountDropdownItems);
+};
+var userMyAccountButton = function userMyAccountButton() {
+  var myAccountDropdownItems = [{
+    DropdownItemName: 'Manage listings'
+  }, {
+    DropdownItemName: 'Manage account'
+  }];
+  return createDropdownMenu(myAccountDropdownItems);
+};
+var createMyAccountButton = function createMyAccountButton() {
+  // 0 - user
+  // 1 - admin
+  var user = 0;
+  var myAccountDiv = document.createElement('div');
+  myAccountDiv.setAttribute('class', 'dropdown');
+  var myAccountA = document.createElement('button');
+  myAccountA.setAttribute('class', 'btn btn-white dropdown-toggle ');
+  myAccountA.setAttribute('type', 'button');
+  myAccountA.setAttribute('data-bs-toggle', 'dropdown');
+  myAccountA.setAttribute('aria-expanded', 'false');
+  myAccountA.innerHTML = '<i class="bi bi-person-fill"></i>';
+  myAccountDiv.appendChild(myAccountA);
+  if (user == 0) {
+    myAccountDiv.appendChild(userMyAccountButton());
+  } else if (user == 1) {
+    myAccountDiv.appendChild(adminMyAccountButton());
+  }
+  return myAccountDiv;
+};
+
 
 /***/ }),
 

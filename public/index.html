@@ -5,11 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" />
   </head>
   <body>
     <!-- Comments will be deleted once everyone is familiar with the base html file -->
     <!-- Sections that can be used with document.querySelector() to place new html, correct semantically:-->
-    <header></header>
+    <header>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Ad page</a>
+    
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+              <!-- Your navigation items here -->
+            </ul>
+            <form class="d-flex w-100" role="search">
+              <div class="input-group">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</button>
+                <ul class="category-dropdown-left dropdown-menu">
+                  <!-- Your dropdown menu items here -->
+                </ul>
+                <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+    
+    
     <main></main>
     <footer
       class="custom-footer d-lg-flex flex-row flex-wrap justify-content-evenly py-3"
@@ -44,6 +72,7 @@
       </p>
     </footer>
     <!-- Added Bootstrap script (needed for clicking functionality, e.g. for dropdowns): -->
+    
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

@@ -8,3 +8,11 @@
     background-color: $main-grey;
     border-color: $main-grey;
 }
+
+.dropdown-menu.show {
+    left: -105px;
+}
+
+.category-dropdown-left {
+    left: 0 !important;
+}
