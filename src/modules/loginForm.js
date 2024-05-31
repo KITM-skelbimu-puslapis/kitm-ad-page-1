@@ -1,4 +1,5 @@
 // login.js
+import { update } from "firebase/database";
 import { app, database } from "./_firebase";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
@@ -54,6 +55,10 @@ export const attachLoginHandler = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        const loginTime = new Data()
+        update(ref(database, 'users/' + user.uid), {
+          last_login: loginTime
+        });
         createLoginMessage("Login successful! Welcome back.");
         console.log("Logged in successfully:", user);
       })
