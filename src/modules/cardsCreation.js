@@ -13,7 +13,6 @@ export function createCards(items) {
     const main = document.querySelector('main');
     const section = document.createElement('section');
     section.className = 'container';
-    section.style.height = '100vh'; 
 
     const container = document.createElement('div');
     container.id = 'card-container';

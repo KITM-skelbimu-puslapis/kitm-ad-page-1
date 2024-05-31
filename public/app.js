@@ -27355,7 +27355,6 @@ function createCards(items) {
   var main = document.querySelector('main');
   var section = document.createElement('section');
   section.className = 'container';
-  section.style.height = '100vh';
   var container = document.createElement('div');
   container.id = 'card-container';
   container.className = 'card-container';
