@@ -10,7 +10,7 @@ const createDropdownMenu = (items) => {
         liA.setAttribute('class', 'dropdown-item');
         liA.setAttribute('href', '#');
         if (item.DropdownItemName === 'Sign Out') {
-            liA.addEventListener('click', logOut); // Pass logOut as a reference
+            liA.addEventListener('click', logOut);
         }
         li.appendChild(liA);
         li.appendChild(liA);

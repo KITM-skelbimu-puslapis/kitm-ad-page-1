@@ -27876,7 +27876,7 @@ var createDropdownMenu = function createDropdownMenu(items) {
     liA.setAttribute('class', 'dropdown-item');
     liA.setAttribute('href', '#');
     if (item.DropdownItemName === 'Sign Out') {
-      liA.addEventListener('click', _signOut__WEBPACK_IMPORTED_MODULE_0__.logOut); // Pass logOut as a reference
+      liA.addEventListener('click', _signOut__WEBPACK_IMPORTED_MODULE_0__.logOut);
     }
     li.appendChild(liA);
     li.appendChild(liA);
