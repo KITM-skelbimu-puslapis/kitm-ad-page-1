@@ -27316,7 +27316,6 @@ var database = (0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.getDatabase)();
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   createCards: () => (/* binding */ createCards),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
 /* harmony export */   items: () => (/* binding */ items)
 /* harmony export */ });
 var items = [{
@@ -27361,16 +27360,21 @@ var items = [{
   link: "https://example.com/page1"
 }];
 function createCards(items) {
-  var container = document.getElementById('card-container');
-  container.classList.add('row');
+  var main = document.querySelector('main');
+  var section = document.createElement('section');
+  section.className = 'container';
+  var container = document.createElement('div');
+  container.id = 'card-container';
+  container.className = 'card-container';
+  section.appendChild(container);
+  main.appendChild(section);
   items.forEach(function (item) {
     var card = document.createElement('div');
-    card.className = 'col-lg-3 col-md-4 col-sm-6 mb-4';
-    card.innerHTML = "\n<div class=\"card\">\n    <a href=\"".concat(item.link, "\" class=\"card__link\">\n        <img src=\"").concat(item.imageUrl, "\" class=\"card__image\" alt=\"").concat(item.name, "\">\n        <div class=\"card__body\">\n            <h5 class=\"card__title\">").concat(item.name, "</h5>\n        </div>\n    </a>\n</div>\n\n        ");
+    card.className = 'card-container__item';
+    card.innerHTML = "\n            <div class=\"card\">\n                <a href=\"".concat(item.link, "\" class=\"card__link\">\n                    <img src=\"").concat(item.imageUrl, "\" class=\"card__image\" alt=\"").concat(item.name, "\">\n                    <div class=\"card__body\">\n                        <h5 class=\"card__title\">").concat(item.name, "</h5>\n                    </div>\n                </a>\n            </div>\n        ");
     container.appendChild(card);
   });
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createCards);
 
 /***/ }),
 

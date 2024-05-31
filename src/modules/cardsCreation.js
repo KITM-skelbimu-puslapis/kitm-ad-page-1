@@ -10,26 +10,31 @@ export const items = [
 ];
 
 export function createCards(items) {
-    const container = document.getElementById('card-container');
-    container.classList.add('row');
+    const main = document.querySelector('main');
+    const section = document.createElement('section');
+    section.className = 'container';
+
+    const container = document.createElement('div');
+    container.id = 'card-container';
+    container.className = 'card-container';
+    section.appendChild(container);
+    main.appendChild(section);
 
     items.forEach(item => {
         const card = document.createElement('div');
-        card.className = 'col-lg-3 col-md-4 col-sm-6 mb-4';
-        
-        card.innerHTML = `
-<div class="card">
-    <a href="${item.link}" class="card__link">
-        <img src="${item.imageUrl}" class="card__image" alt="${item.name}">
-        <div class="card__body">
-            <h5 class="card__title">${item.name}</h5>
-        </div>
-    </a>
-</div>
+        card.className = 'card-container__item';
 
+        card.innerHTML = `
+            <div class="card">
+                <a href="${item.link}" class="card__link">
+                    <img src="${item.imageUrl}" class="card__image" alt="${item.name}">
+                    <div class="card__body">
+                        <h5 class="card__title">${item.name}</h5>
+                    </div>
+                </a>
+            </div>
         `;
-        
+
         container.appendChild(card);
     });
 }
- export default createCards
