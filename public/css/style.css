@@ -11974,6 +11974,10 @@ textarea.form-control-lg {
   left: -105px;
 }
 
+.category-dropdown-left {
+  left: 0 !important;
+}
+
 .link-style, .link-style:link {
   color: #6c757e;
   text-decoration: none;
