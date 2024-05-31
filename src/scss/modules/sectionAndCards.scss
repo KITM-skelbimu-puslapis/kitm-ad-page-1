@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap; // Ensure the container can wrap its content
+    flex-wrap: wrap; 
     padding: 1rem;
 }
 
@@ -69,18 +69,18 @@
         }
 
         &__title {
-            white-space: nowrap; // Prevent text from wrapping
-            overflow: hidden; // Hide overflow text
-            text-overflow: ellipsis; // Add ellipsis for overflow text
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
             color: $main-grey;
             margin: 0;
-            width: 100%; // Ensure the text respects the card's width
+            width: 100%; 
         }
     }
 }
 
 @media (max-width: 480px) {
     .container {
-        height: auto; // Allow the height to adjust to content
+        height: auto;
     }
 }
