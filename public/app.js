@@ -27249,7 +27249,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_displayNav_displaynav__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/displayNav/displaynav */ "./src/modules/displayNav/displaynav.js");
 /* harmony import */ var _modules_registrationForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/registrationForm */ "./src/modules/registrationForm.js");
 /* harmony import */ var _modules_loginForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/loginForm */ "./src/modules/loginForm.js");
+/* harmony import */ var _modules_signOut__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/signOut */ "./src/modules/signOut.js");
 // JS modules imported:
+
 
 
 
@@ -27267,6 +27269,9 @@ __webpack_require__.r(__webpack_exports__);
 // Render the login form
 (0,_modules_loginForm__WEBPACK_IMPORTED_MODULE_4__.renderLoginForm)();
 (0,_modules_loginForm__WEBPACK_IMPORTED_MODULE_4__.attachLoginHandler)();
+
+//signOut
+(0,_modules_signOut__WEBPACK_IMPORTED_MODULE_5__.a)();
 
 /***/ }),
 
@@ -27767,6 +27772,33 @@ var registerUser = function registerUser() {
 
 /***/ }),
 
+/***/ "./src/modules/signOut.js":
+/*!********************************!*\
+  !*** ./src/modules/signOut.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   logOut: () => (/* binding */ logOut)
+/* harmony export */ });
+/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/auth */ "./node_modules/firebase/auth/dist/esm/index.esm.js");
+
+var logOut = function logOut() {
+  var auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_0__.getAuth)();
+  (0,firebase_auth__WEBPACK_IMPORTED_MODULE_0__.signOut)(auth).then(function () {
+    // Sign-out successful.
+    console.log('Signed out successfully');
+  })["catch"](function (error) {
+    // An error happened.
+    console.error('Sign out error:', error);
+  });
+};
+
+
+/***/ }),
+
 /***/ "./src/modules/userNav/displayUserNavButtons.js":
 /*!******************************************************!*\
   !*** ./src/modules/userNav/displayUserNavButtons.js ***!
@@ -27832,15 +27864,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   createMyAccountButton: () => (/* binding */ createMyAccountButton)
 /* harmony export */ });
+/* harmony import */ var _signOut__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../signOut */ "./src/modules/signOut.js");
+
 var createDropdownMenu = function createDropdownMenu(items) {
   var dropdownUl = document.createElement('ul');
   dropdownUl.setAttribute('class', 'dropdown-menu');
   items.forEach(function (item) {
     var li = document.createElement('li');
-    var liA = document.createElement('a');
+    var liA = document.createElement('button');
     liA.innerHTML = item.DropdownItemName;
     liA.setAttribute('class', 'dropdown-item');
     liA.setAttribute('href', '#');
+    if (item.DropdownItemName === 'Sign Out') {
+      liA.addEventListener('click', _signOut__WEBPACK_IMPORTED_MODULE_0__.logOut); // Pass logOut as a reference
+    }
+    li.appendChild(liA);
     li.appendChild(liA);
     dropdownUl.appendChild(li);
   });
@@ -27853,6 +27891,8 @@ var adminMyAccountButton = function adminMyAccountButton() {
     DropdownItemName: 'Manage account'
   }, {
     DropdownItemName: 'Manage categories'
+  }, {
+    DropdownItemName: 'Sign Out'
   }];
   return createDropdownMenu(myAccountDropdownItems);
 };
@@ -27861,6 +27901,8 @@ var userMyAccountButton = function userMyAccountButton() {
     DropdownItemName: 'Manage listings'
   }, {
     DropdownItemName: 'Manage account'
+  }, {
+    DropdownItemName: 'Sign Out'
   }];
   return createDropdownMenu(myAccountDropdownItems);
 };
@@ -27871,7 +27913,7 @@ var createMyAccountButton = function createMyAccountButton() {
   var myAccountDiv = document.createElement('div');
   myAccountDiv.setAttribute('class', 'dropdown');
   var myAccountA = document.createElement('button');
-  myAccountA.setAttribute('class', 'btn btn-white dropdown-toggle ');
+  myAccountA.setAttribute('class', 'btn btn-white dropdown-toggle');
   myAccountA.setAttribute('type', 'button');
   myAccountA.setAttribute('data-bs-toggle', 'dropdown');
   myAccountA.setAttribute('aria-expanded', 'false');
