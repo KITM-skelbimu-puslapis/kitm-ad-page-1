@@ -27542,9 +27542,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   attachLoginHandler: () => (/* binding */ attachLoginHandler),
 /* harmony export */   renderLoginForm: () => (/* binding */ renderLoginForm)
 /* harmony export */ });
-/* harmony import */ var _firebase__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_firebase */ "./src/modules/_firebase.js");
-/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/auth */ "./node_modules/firebase/auth/dist/esm/index.esm.js");
+/* harmony import */ var firebase_database__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/database */ "./node_modules/firebase/database/dist/esm/index.esm.js");
+/* harmony import */ var _firebase__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_firebase */ "./src/modules/_firebase.js");
+/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/auth */ "./node_modules/firebase/auth/dist/esm/index.esm.js");
 // login.js
+
 
 
 
@@ -27579,11 +27581,15 @@ var attachLoginHandler = function attachLoginHandler() {
   var loginForm = document.getElementById("login-form");
   loginForm.addEventListener("submit", function (e) {
     e.preventDefault();
-    var auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.getAuth)();
+    var auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.getAuth)();
     var email = document.getElementById("login-email").value;
     var password = document.getElementById("login-password").value;
-    (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.signInWithEmailAndPassword)(auth, email, password).then(function (userCredential) {
+    (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.signInWithEmailAndPassword)(auth, email, password).then(function (userCredential) {
       var user = userCredential.user;
+      var loginTime = new Date().toLocaleString();
+      (0,firebase_database__WEBPACK_IMPORTED_MODULE_0__.update)((0,firebase_database__WEBPACK_IMPORTED_MODULE_0__.ref)(_firebase__WEBPACK_IMPORTED_MODULE_1__.database, 'users/' + user.uid), {
+        lastLogin: loginTime
+      });
       createLoginMessage("Login successful! Welcome back.");
       console.log("Logged in successfully:", user);
     })["catch"](function (error) {
