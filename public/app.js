@@ -27249,9 +27249,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_displayNav_displaynav__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/displayNav/displaynav */ "./src/modules/displayNav/displaynav.js");
 /* harmony import */ var _modules_registrationForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/registrationForm */ "./src/modules/registrationForm.js");
 /* harmony import */ var _modules_loginForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/loginForm */ "./src/modules/loginForm.js");
-/* harmony import */ var _modules_signOut__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/signOut */ "./src/modules/signOut.js");
 // JS modules imported:
-
 
 
 
@@ -27269,9 +27267,6 @@ __webpack_require__.r(__webpack_exports__);
 // Render the login form
 (0,_modules_loginForm__WEBPACK_IMPORTED_MODULE_4__.renderLoginForm)();
 (0,_modules_loginForm__WEBPACK_IMPORTED_MODULE_4__.attachLoginHandler)();
-
-//signOut
-(0,_modules_signOut__WEBPACK_IMPORTED_MODULE_5__.a)();
 
 /***/ }),
 
@@ -27387,28 +27382,23 @@ function createCards(items) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   displayNav: () => (/* binding */ displayNav)
-/* harmony export */ });
 /* harmony import */ var _navCreateDropdownCategories__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navCreateDropdownCategories */ "./src/modules/displayNav/navCreateDropdownCategories.js");
 /* harmony import */ var _guestNav_displayGuestNavButtons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../guestNav/displayGuestNavButtons */ "./src/modules/guestNav/displayGuestNavButtons.js");
 /* harmony import */ var _userNav_displayUserNavButtons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../userNav/displayUserNavButtons */ "./src/modules/userNav/displayUserNavButtons.js");
+/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! firebase/auth */ "./node_modules/firebase/auth/dist/esm/index.esm.js");
 
 
 
-var displayNav = function displayNav() {
-  (0,_navCreateDropdownCategories__WEBPACK_IMPORTED_MODULE_0__.createDropdownCategories)();
-  // 0 - guest
-  // 1 - user/admin
-  var guest = 1;
-  if (guest === 0) {
-    (0,_guestNav_displayGuestNavButtons__WEBPACK_IMPORTED_MODULE_1__.guestNavButtonsDisplay)();
-  } else if (guest === 1) {
+
+var auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_3__.getAuth)();
+(0,firebase_auth__WEBPACK_IMPORTED_MODULE_3__.onAuthStateChanged)(auth, function (user) {
+  if (user) {
     (0,_userNav_displayUserNavButtons__WEBPACK_IMPORTED_MODULE_2__["default"])();
+    var uid = user.uid;
+  } else {
+    (0,_guestNav_displayGuestNavButtons__WEBPACK_IMPORTED_MODULE_1__.guestNavButtonsDisplay)();
   }
-};
-displayNav();
-
+});
 
 /***/ }),
 
@@ -27591,6 +27581,7 @@ var attachLoginHandler = function attachLoginHandler() {
       var user = userCredential.user;
       createLoginMessage("Login successful! Welcome back.");
       console.log("Logged in successfully:", user);
+      window.location.reload();
     })["catch"](function (error) {
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -27781,11 +27772,11 @@ var registerUser = function registerUser() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   logOut: () => (/* binding */ logOut)
+/* harmony export */   signOutCreate: () => (/* binding */ signOutCreate)
 /* harmony export */ });
 /* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/auth */ "./node_modules/firebase/auth/dist/esm/index.esm.js");
 
-var logOut = function logOut() {
+var signOutCreate = function signOutCreate() {
   var auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_0__.getAuth)();
   (0,firebase_auth__WEBPACK_IMPORTED_MODULE_0__.signOut)(auth).then(function () {
     // Sign-out successful.
@@ -27876,7 +27867,10 @@ var createDropdownMenu = function createDropdownMenu(items) {
     liA.setAttribute('class', 'dropdown-item');
     liA.setAttribute('href', '#');
     if (item.DropdownItemName === 'Sign Out') {
-      liA.addEventListener('click', _signOut__WEBPACK_IMPORTED_MODULE_0__.logOut);
+      liA.addEventListener('click', _signOut__WEBPACK_IMPORTED_MODULE_0__.signOutCreate);
+      liA.addEventListener('click', function () {
+        window.location.reload();
+      });
     }
     li.appendChild(liA);
     li.appendChild(liA);

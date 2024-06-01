@@ -1,5 +1,4 @@
-import { logOut } from "../signOut";
-
+import { signOutCreate } from "../signOut";
 const createDropdownMenu = (items) => {
     const dropdownUl = document.createElement('ul');
     dropdownUl.setAttribute('class', 'dropdown-menu');
@@ -10,16 +9,17 @@ const createDropdownMenu = (items) => {
         liA.setAttribute('class', 'dropdown-item');
         liA.setAttribute('href', '#');
         if (item.DropdownItemName === 'Sign Out') {
-            liA.addEventListener('click', logOut);
+            liA.addEventListener('click', signOutCreate);
+            liA.addEventListener('click', ()=>{
+                window.location.reload();
+            });     
         }
         li.appendChild(liA);
         li.appendChild(liA);
         dropdownUl.appendChild(li);
     });
-
     return dropdownUl;
 }
-
 let adminMyAccountButton = () => {
     const myAccountDropdownItems = [
         { DropdownItemName: 'Manage listings' },
@@ -29,7 +29,6 @@ let adminMyAccountButton = () => {
     ];
     return createDropdownMenu(myAccountDropdownItems);
 }
-
 let userMyAccountButton = () => {
     const myAccountDropdownItems = [
         { DropdownItemName: 'Manage listings' },
@@ -38,7 +37,6 @@ let userMyAccountButton = () => {
     ];
     return createDropdownMenu(myAccountDropdownItems);
 }
-
 let createMyAccountButton = () => {
     // 0 - user
     // 1 - admin
@@ -59,5 +57,4 @@ let createMyAccountButton = () => {
     }
     return myAccountDiv;
 }
-
 export { createMyAccountButton };

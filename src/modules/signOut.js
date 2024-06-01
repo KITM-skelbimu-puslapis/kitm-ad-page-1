@@ -1,6 +1,5 @@
 import { getAuth, signOut } from "firebase/auth";
-
-let logOut = () => {
+let signOutCreate = () => {
     const auth = getAuth();
     signOut(auth).then(() => {
         // Sign-out successful.
@@ -10,5 +9,4 @@ let logOut = () => {
         console.error('Sign out error:', error);
     });
 }
-
-export { logOut }
+export { signOutCreate }

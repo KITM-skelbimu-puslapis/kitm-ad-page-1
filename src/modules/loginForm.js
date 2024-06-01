@@ -25,11 +25,13 @@ export const renderLoginForm = () => {
     <div class="d-flex justify-content-center mb-3">
       <button type="submit" id="login-btn" class="btn btn-secondary">Login</button>
     </div>`;
-    
+  
   loginContainer.appendChild(loginForm);
   loginSection.appendChild(loginContainer);
   main.appendChild(loginSection);
+  
 };
+
 
 // To create a login message:
 const createLoginMessage = (text) => {
@@ -56,6 +58,7 @@ export const attachLoginHandler = () => {
         const user = userCredential.user;
         createLoginMessage("Login successful! Welcome back.");
         console.log("Logged in successfully:", user);
+        window.location.reload();
       })
       .catch((error) => {
         const errorCode = error.code;
