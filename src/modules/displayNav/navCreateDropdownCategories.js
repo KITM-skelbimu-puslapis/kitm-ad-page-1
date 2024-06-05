@@ -8,7 +8,7 @@ const dropdownCategories = [
     {categoryName: 'Food'},
     {categoryName: 'Beauty'}
 ];
-let createDropdownCategories = () => {
+const createDropdownCategories = () => {
     const dropdownMenu = document.querySelector('.dropdown-menu');
 
     dropdownCategories.forEach((item) => {

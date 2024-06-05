@@ -1,4 +1,4 @@
-let createAddNewListingButton = () => {
+const createAddNewListingButton = () => {
     const AddNewListingButton = document.createElement('a');
     AddNewListingButton.setAttribute('class', 'btn btn-white');
     AddNewListingButton.setAttribute('type', 'button');

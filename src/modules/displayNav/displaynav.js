@@ -1,19 +1,28 @@
 import { createDropdownCategories } from "./navCreateDropdownCategories";
-import { guestNavButtonsDisplay } from "../guestNav/displayGuestNavButtons";
-import userNavButtonsDisplay from "../userNav/displayUserNavButtons";
-let displayNav = () => {
-    createDropdownCategories()
-    // 0 - guest
-    // 1 - user/admin
-    let guest = 1;
-    if (guest === 0){
-        guestNavButtonsDisplay()
-    } else if (guest === 1){
-        userNavButtonsDisplay()    
+import { guestNavButtonsDisplay, clearGuestNavButtons } from "../guestNav/displayGuestNavButtons";
+import userNavButtonsDisplay, { clearUserNavButtons } from "../userNav/displayUserNavButtons";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+const auth = getAuth();
+createDropdownCategories();
+const divReplace = document.createElement('div')
+divReplace.setAttribute('class', 'nav-item d-flex flex-row justify-content-center align-items-center align-self-center text-center');
+divReplace.setAttribute('id','replace');
+const spotForAddNewListingButton = document.querySelector('#navbarSupportedContent');
+spotForAddNewListingButton.appendChild(divReplace);
+
+const checkIfLoggedIn = ()=>{
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      divReplace.innerHTML = '';
+      userNavButtonsDisplay();
+      const uid = user.uid;
+    } else {
+      divReplace.innerHTML = '';
+      guestNavButtonsDisplay();
     }
+  });
 }
-displayNav()
-export {displayNav}
+export default checkIfLoggedIn
 
 
 

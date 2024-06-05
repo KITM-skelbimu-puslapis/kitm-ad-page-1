@@ -4,7 +4,7 @@ import { items, createCards } from "./modules/cardsCreation";
 import { displayNav } from "./modules/displayNav/displaynav";
 import { renderRegistrationForm, registerUser}  from "./modules/registrationForm";
 import { renderLoginForm, attachLoginHandler } from './modules/loginForm';
-
+import checkIfLoggedIn from "./modules/displayNav/displaynav";
 
 // Main application logic to render the page:
 // Homepage:
@@ -17,3 +17,6 @@ registerUser();
 // Render the login form
 renderLoginForm();
 attachLoginHandler();
+
+//Check if logged in
+checkIfLoggedIn();

@@ -26,11 +26,13 @@ export const renderLoginForm = () => {
     <div class="d-flex justify-content-center mb-3">
       <button type="submit" id="login-btn" class="btn btn-secondary">Login</button>
     </div>`;
-    
+  
   loginContainer.appendChild(loginForm);
   loginSection.appendChild(loginContainer);
   main.appendChild(loginSection);
+  
 };
+
 
 // To create a login message:
 const createLoginMessage = (text) => {

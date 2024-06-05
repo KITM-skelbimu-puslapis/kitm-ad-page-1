@@ -27256,6 +27256,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 // Main application logic to render the page:
 // Homepage:
 (0,_modules_cardsCreation__WEBPACK_IMPORTED_MODULE_1__.createCards)(_modules_cardsCreation__WEBPACK_IMPORTED_MODULE_1__.items);
@@ -27267,6 +27268,9 @@ __webpack_require__.r(__webpack_exports__);
 // Render the login form
 (0,_modules_loginForm__WEBPACK_IMPORTED_MODULE_4__.renderLoginForm)();
 (0,_modules_loginForm__WEBPACK_IMPORTED_MODULE_4__.attachLoginHandler)();
+
+//Check if logged in
+(0,_modules_displayNav_displaynav__WEBPACK_IMPORTED_MODULE_2__["default"])();
 
 /***/ }),
 
@@ -27387,27 +27391,36 @@ function createCards(items) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   displayNav: () => (/* binding */ displayNav)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _navCreateDropdownCategories__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navCreateDropdownCategories */ "./src/modules/displayNav/navCreateDropdownCategories.js");
 /* harmony import */ var _guestNav_displayGuestNavButtons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../guestNav/displayGuestNavButtons */ "./src/modules/guestNav/displayGuestNavButtons.js");
 /* harmony import */ var _userNav_displayUserNavButtons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../userNav/displayUserNavButtons */ "./src/modules/userNav/displayUserNavButtons.js");
+/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! firebase/auth */ "./node_modules/firebase/auth/dist/esm/index.esm.js");
 
 
 
-var displayNav = function displayNav() {
-  (0,_navCreateDropdownCategories__WEBPACK_IMPORTED_MODULE_0__.createDropdownCategories)();
-  // 0 - guest
-  // 1 - user/admin
-  var guest = 1;
-  if (guest === 0) {
-    (0,_guestNav_displayGuestNavButtons__WEBPACK_IMPORTED_MODULE_1__.guestNavButtonsDisplay)();
-  } else if (guest === 1) {
-    (0,_userNav_displayUserNavButtons__WEBPACK_IMPORTED_MODULE_2__["default"])();
-  }
+
+var auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_3__.getAuth)();
+(0,_navCreateDropdownCategories__WEBPACK_IMPORTED_MODULE_0__.createDropdownCategories)();
+var divReplace = document.createElement('div');
+divReplace.setAttribute('class', 'nav-item d-flex flex-row justify-content-center align-items-center align-self-center text-center');
+divReplace.setAttribute('id', 'replace');
+var spotForAddNewListingButton = document.querySelector('#navbarSupportedContent');
+spotForAddNewListingButton.appendChild(divReplace);
+var checkIfLoggedIn = function checkIfLoggedIn() {
+  (0,firebase_auth__WEBPACK_IMPORTED_MODULE_3__.onAuthStateChanged)(auth, function (user) {
+    if (user) {
+      divReplace.innerHTML = '';
+      (0,_userNav_displayUserNavButtons__WEBPACK_IMPORTED_MODULE_2__["default"])();
+      var uid = user.uid;
+    } else {
+      divReplace.innerHTML = '';
+      (0,_guestNav_displayGuestNavButtons__WEBPACK_IMPORTED_MODULE_1__.guestNavButtonsDisplay)();
+    }
+  });
 };
-displayNav();
-
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (checkIfLoggedIn);
 
 /***/ }),
 
@@ -27475,7 +27488,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var guestNavButtonsDisplay = function guestNavButtonsDisplay() {
-  var spotForAddNewListingButton = document.querySelector('#navbarSupportedContent');
+  var spotForAddNewListingButton = document.querySelector('#replace');
   var div = document.createElement('div');
   div.setAttribute('class', 'nav-item d-flex flex-row justify-content-center align-items-center align-self-center text-center');
   var loginButton = (0,_navCreateLogin__WEBPACK_IMPORTED_MODULE_0__.createLoginButton)();
@@ -27777,6 +27790,33 @@ var registerUser = function registerUser() {
 
 /***/ }),
 
+/***/ "./src/modules/signOut.js":
+/*!********************************!*\
+  !*** ./src/modules/signOut.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   signOutCreate: () => (/* binding */ signOutCreate)
+/* harmony export */ });
+/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/auth */ "./node_modules/firebase/auth/dist/esm/index.esm.js");
+
+var signOutCreate = function signOutCreate() {
+  var auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_0__.getAuth)();
+  (0,firebase_auth__WEBPACK_IMPORTED_MODULE_0__.signOut)(auth).then(function () {
+    // Sign-out successful.
+    console.log('Signed out successfully');
+  })["catch"](function (error) {
+    // An error happened.
+    console.error('Sign out error:', error);
+  });
+};
+
+
+/***/ }),
+
 /***/ "./src/modules/userNav/displayUserNavButtons.js":
 /*!******************************************************!*\
   !*** ./src/modules/userNav/displayUserNavButtons.js ***!
@@ -27793,7 +27833,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var userNavButtonsDisplay = function userNavButtonsDisplay() {
-  var spotForAddNewListingButton = document.querySelector('#navbarSupportedContent');
+  var spotForAddNewListingButton = document.querySelector('#replace');
   var div = document.createElement('div');
   div.setAttribute('class', 'nav-item d-flex flex-row justify-content-center align-items-center align-self-center text-center');
   var addNewListingButton = (0,_navCreateAddNewListing__WEBPACK_IMPORTED_MODULE_0__.createAddNewListingButton)();
@@ -27842,15 +27882,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   createMyAccountButton: () => (/* binding */ createMyAccountButton)
 /* harmony export */ });
+/* harmony import */ var _signOut__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../signOut */ "./src/modules/signOut.js");
+
 var createDropdownMenu = function createDropdownMenu(items) {
   var dropdownUl = document.createElement('ul');
   dropdownUl.setAttribute('class', 'dropdown-menu');
   items.forEach(function (item) {
     var li = document.createElement('li');
-    var liA = document.createElement('a');
+    var liA = document.createElement('button');
     liA.innerHTML = item.DropdownItemName;
     liA.setAttribute('class', 'dropdown-item');
     liA.setAttribute('href', '#');
+    if (item.DropdownItemName === 'Sign Out') {
+      liA.addEventListener('click', _signOut__WEBPACK_IMPORTED_MODULE_0__.signOutCreate);
+      liA.addEventListener('click', function () {});
+    }
+    li.appendChild(liA);
     li.appendChild(liA);
     dropdownUl.appendChild(li);
   });
@@ -27863,6 +27910,8 @@ var adminMyAccountButton = function adminMyAccountButton() {
     DropdownItemName: 'Manage account'
   }, {
     DropdownItemName: 'Manage categories'
+  }, {
+    DropdownItemName: 'Sign Out'
   }];
   return createDropdownMenu(myAccountDropdownItems);
 };
@@ -27871,6 +27920,8 @@ var userMyAccountButton = function userMyAccountButton() {
     DropdownItemName: 'Manage listings'
   }, {
     DropdownItemName: 'Manage account'
+  }, {
+    DropdownItemName: 'Sign Out'
   }];
   return createDropdownMenu(myAccountDropdownItems);
 };
@@ -27881,7 +27932,7 @@ var createMyAccountButton = function createMyAccountButton() {
   var myAccountDiv = document.createElement('div');
   myAccountDiv.setAttribute('class', 'dropdown');
   var myAccountA = document.createElement('button');
-  myAccountA.setAttribute('class', 'btn btn-white dropdown-toggle ');
+  myAccountA.setAttribute('class', 'btn btn-white dropdown-toggle');
   myAccountA.setAttribute('type', 'button');
   myAccountA.setAttribute('data-bs-toggle', 'dropdown');
   myAccountA.setAttribute('aria-expanded', 'false');
