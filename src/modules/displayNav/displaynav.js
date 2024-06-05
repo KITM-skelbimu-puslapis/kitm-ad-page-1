@@ -3,13 +3,26 @@ import { guestNavButtonsDisplay, clearGuestNavButtons } from "../guestNav/displa
 import userNavButtonsDisplay, { clearUserNavButtons } from "../userNav/displayUserNavButtons";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 const auth = getAuth();
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    userNavButtonsDisplay();
-    const uid = user.uid;
-  } else {
-    guestNavButtonsDisplay();
-  }
-});
+createDropdownCategories();
+const divReplace = document.createElement('div')
+divReplace.setAttribute('class', 'nav-item d-flex flex-row justify-content-center align-items-center align-self-center text-center');
+divReplace.setAttribute('id','replace');
+const spotForAddNewListingButton = document.querySelector('#navbarSupportedContent');
+spotForAddNewListingButton.appendChild(divReplace);
+
+const checkIfLoggedIn = ()=>{
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      divReplace.innerHTML = '';
+      userNavButtonsDisplay();
+      const uid = user.uid;
+    } else {
+      divReplace.innerHTML = '';
+      guestNavButtonsDisplay();
+    }
+  });
+}
+export default checkIfLoggedIn
+
 
 

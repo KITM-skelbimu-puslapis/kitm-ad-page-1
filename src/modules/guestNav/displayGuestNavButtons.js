@@ -1,7 +1,7 @@
 import { createLoginButton } from "./navCreateLogin";
 import { createRegisterButton } from "./navCreateRegister";
-let guestNavButtonsDisplay = () => {
-    const spotForAddNewListingButton = document.querySelector('#navbarSupportedContent');
+const guestNavButtonsDisplay = () => {
+    const spotForAddNewListingButton = document.querySelector('#replace');
     const div = document.createElement('div');
     div.setAttribute('class', 'nav-item d-flex flex-row justify-content-center align-items-center align-self-center text-center');
     const loginButton = createLoginButton();

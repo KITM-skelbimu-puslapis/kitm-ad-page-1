@@ -11,7 +11,6 @@ const createDropdownMenu = (items) => {
         if (item.DropdownItemName === 'Sign Out') {
             liA.addEventListener('click', signOutCreate);
             liA.addEventListener('click', ()=>{
-                window.location.reload();
             });     
         }
         li.appendChild(liA);

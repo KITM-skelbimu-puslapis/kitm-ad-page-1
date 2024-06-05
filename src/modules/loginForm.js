@@ -58,7 +58,6 @@ export const attachLoginHandler = () => {
         const user = userCredential.user;
         createLoginMessage("Login successful! Welcome back.");
         console.log("Logged in successfully:", user);
-        window.location.reload();
       })
       .catch((error) => {
         const errorCode = error.code;

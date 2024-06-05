@@ -1,4 +1,4 @@
-let createRegisterButton = () => {
+const createRegisterButton = () => {
     const registerButton = document.createElement('a');
     registerButton.setAttribute('class','btn btn-white');
     registerButton.setAttribute('type','button');

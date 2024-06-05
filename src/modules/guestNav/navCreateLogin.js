@@ -1,4 +1,4 @@
-let createLoginButton = () => {
+const createLoginButton = () => {
     const loginButton = document.createElement('a');
     loginButton.setAttribute('class','btn btn-white');
     loginButton.setAttribute('type','button');
