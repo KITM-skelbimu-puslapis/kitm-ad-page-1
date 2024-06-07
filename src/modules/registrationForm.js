@@ -7,7 +7,7 @@ export const renderRegistrationForm = () => {
   const main = document.querySelector("main");
   const registrationSection = document.createElement("section");
   registrationSection.classList.add(
-    "registration-form",
+    "form",
     "d-flex",
     "flex-column",
     "justify-content-center",
@@ -15,7 +15,7 @@ export const renderRegistrationForm = () => {
   );
   const registrationContainer = document.createElement("div");
   registrationContainer.classList.add(
-    "registration-form__form-container",
+    "form__form-container",
     "d-flex",
     "flex-column",
     "justify-content-center",

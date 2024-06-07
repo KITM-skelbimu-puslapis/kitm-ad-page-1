@@ -5,7 +5,7 @@ export const listingForm = () => {
   const main = document.querySelector("main");
   const addNewListingSection = document.createElement("section");
   addNewListingSection.classList.add(
-    "registration-form",
+    "form",
     "d-flex",
     "flex-column",
     "justify-content-center",
@@ -13,7 +13,7 @@ export const listingForm = () => {
   );
   const newListingFormContainer = document.createElement("div");
   newListingFormContainer.classList.add(
-    "registration-form__form-container",
+    "form__form-container",
     "d-flex",
     "flex-column",
     "justify-content-center",

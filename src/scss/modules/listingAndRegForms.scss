@@ -1,7 +1,7 @@
 @import '_mixins.scss';
 @import '_variables';
 
-.registration-form {
+.form {
     @include size(100%, 100vh);
     position: relative;
 
@@ -28,7 +28,7 @@
     }
 }
 
-.registration-form::before {
+.form::before {
     content: "";
     position: absolute;
     top: 0;
@@ -40,7 +40,7 @@
     z-index: -2; 
 }
 
-.registration-form::after {
+.form::after {
     content: "";
     position: absolute;
     top: 0;
@@ -53,14 +53,14 @@
 }
 
 @media (max-width: 481px) {
-    .registration-form {
+    .form {
         form {
             border-radius: 0px;
             @include size(auto, max-content);
         }
     }
 
-    .registration-form::before {
+    .form::before {
         content: "";
         position: absolute;
         top: 0;
@@ -72,7 +72,7 @@
         z-index: -2; 
     }
 
-    .registration-form::after {
+    .form::after {
         content: "";
         position: absolute;
         top: 0;
