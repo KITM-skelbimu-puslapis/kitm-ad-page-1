@@ -12095,6 +12095,9 @@ textarea.form-control-lg {
   background-color: #ffffff;
   padding: 30px;
   border-radius: 0.375rem;
+  width: 405.45px;
+  height: -moz-max-content;
+  height: max-content;
 }
 .registration-form__form-container form button {
   width: 100%;
@@ -12103,6 +12106,12 @@ textarea.form-control-lg {
 .registration-form__form-container form p {
   text-align: center;
   color: #6c757e;
+}
+.registration-form__form-container form input::-moz-placeholder, .registration-form__form-container form textarea::-moz-placeholder {
+  color: #000000;
+}
+.registration-form__form-container form input::placeholder, .registration-form__form-container form textarea::placeholder {
+  color: #000000;
 }
 
 .registration-form::before {
@@ -12132,6 +12141,9 @@ textarea.form-control-lg {
 @media (max-width: 481px) {
   .registration-form form {
     border-radius: 0px;
+    width: auto;
+    height: -moz-max-content;
+    height: max-content;
   }
   .registration-form::before {
     content: "";
