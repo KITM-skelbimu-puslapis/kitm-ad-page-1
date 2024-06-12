@@ -31647,7 +31647,7 @@ var manageListingsUi = function manageListingsUi() {
         var removeListingButton = document.createElement("button");
         removeListingButton.setAttribute("type", "button");
         removeListingButton.classList.add("btn", "btn-outline-secondary", "w-50");
-        removeListingButton.innerHTML = '<i class="bi bi-dash-lg"></i>';
+        removeListingButton.innerHTML = '<i class="bi bi-trash3-fill"></i>';
         removeListingButton.addEventListener("click", function () {
           removeListing(key, divForAccordion);
         });
