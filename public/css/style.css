@@ -12174,6 +12174,7 @@ textarea.form-control-lg {
   position: relative;
 }
 .login-form__form-container form {
+  width: 405.45px;
   background-color: #ffffff;
   padding: 30px;
   border-radius: 0.375rem;
