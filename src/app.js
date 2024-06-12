@@ -8,6 +8,7 @@ import { renderLoginForm, attachLoginHandler } from './modules/loginForm';
 import checkIfLoggedIn from "./modules/displayNav/displaynav";
 import { listingForm, renderListingCategories } from "./modules/listingForm";
 import { validateAndAddListing } from "./modules/listingAdd";
+import { manageListingsUi } from "./modules/manageListings";
 
 // !!! Adding categories to DB (our hardcoded categories have been added; the function should only be called by an event listener, e.g. a button click):
 // addCategory(name, imageUrl);
@@ -32,3 +33,8 @@ validateAndAddListing();
 
 //Check if logged in
 checkIfLoggedIn();
+
+
+
+//----------------------------
+manageListingsUi()
