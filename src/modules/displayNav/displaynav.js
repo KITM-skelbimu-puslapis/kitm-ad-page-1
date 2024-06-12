@@ -2,8 +2,9 @@ import { createDropdownCategories } from "./navCreateDropdownCategories";
 import { guestNavButtonsDisplay, clearGuestNavButtons } from "../guestNav/displayGuestNavButtons";
 import userNavButtonsDisplay, { clearUserNavButtons } from "../userNav/displayUserNavButtons";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { renderListingCategoriesForNav } from "./navCreateDropdownCategories";
 const auth = getAuth();
-createDropdownCategories();
+renderListingCategoriesForNav()
 const divReplace = document.createElement('div')
 divReplace.setAttribute('class', 'nav-item d-flex flex-row justify-content-center align-items-center align-self-center text-center');
 divReplace.setAttribute('id','replace');

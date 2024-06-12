@@ -30953,7 +30953,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_loginForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/loginForm */ "./src/modules/loginForm.js");
 /* harmony import */ var _modules_listingForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/listingForm */ "./src/modules/listingForm.js");
 /* harmony import */ var _modules_listingAdd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/listingAdd */ "./src/modules/listingAdd.js");
+/* harmony import */ var _modules_manageListings__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/manageListings */ "./src/modules/manageListings.js");
 // JS modules imported:
+
 
 
 
@@ -30986,6 +30988,9 @@ __webpack_require__.r(__webpack_exports__);
 
 //Check if logged in
 (0,_modules_displayNav_displaynav__WEBPACK_IMPORTED_MODULE_3__["default"])();
+
+//----------------------------
+(0,_modules_manageListings__WEBPACK_IMPORTED_MODULE_8__.manageListingsUi)();
 
 /***/ }),
 
@@ -31161,8 +31166,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_3__.getAuth)();
-(0,_navCreateDropdownCategories__WEBPACK_IMPORTED_MODULE_0__.createDropdownCategories)();
+(0,_navCreateDropdownCategories__WEBPACK_IMPORTED_MODULE_0__.renderListingCategoriesForNav)();
 var divReplace = document.createElement('div');
 divReplace.setAttribute('class', 'nav-item d-flex flex-row justify-content-center align-items-center align-self-center text-center');
 divReplace.setAttribute('id', 'replace');
@@ -31193,42 +31199,36 @@ var checkIfLoggedIn = function checkIfLoggedIn() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   createDropdownCategories: () => (/* binding */ createDropdownCategories)
+/* harmony export */   renderListingCategoriesForNav: () => (/* binding */ renderListingCategoriesForNav)
 /* harmony export */ });
-var dropdownCategories = [{
-  categoryName: 'Furniture'
-}, {
-  categoryName: 'Cars'
-}, {
-  categoryName: 'Pets'
-}, {
-  categoryName: 'Books'
-}, {
-  categoryName: 'Electronics'
-}, {
-  categoryName: 'Sports'
-}, {
-  categoryName: 'Food'
-}, {
-  categoryName: 'Beauty'
-}];
-var createDropdownCategories = function createDropdownCategories() {
-  var dropdownMenu = document.querySelector('.dropdown-menu');
-  dropdownCategories.forEach(function (item) {
-    var li = document.createElement('li');
-    var a = document.createElement('a');
-    a.textContent = item.categoryName;
-    a.setAttribute('class', 'dropdown-item');
-    a.setAttribute('href', '#');
-    li.appendChild(a);
-    dropdownMenu.appendChild(li);
-    a.addEventListener('click', function () {
-      var button = document.querySelector('.dropdown-toggle');
-      button.textContent = item.categoryName;
-    });
+/* harmony import */ var _firebase__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_firebase */ "./src/modules/_firebase.js");
+/* harmony import */ var firebase_database__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/database */ "./node_modules/firebase/database/dist/esm/index.esm.js");
+
+
+var renderListingCategoriesForNav = function renderListingCategoriesForNav() {
+  var dbRef = (0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.ref)(_firebase__WEBPACK_IMPORTED_MODULE_0__.database);
+  (0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.get)((0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.child)(dbRef, "categories")).then(function (snapshot) {
+    if (snapshot.exists()) {
+      var categories = Object.values(snapshot.val());
+      categories.map(function (category) {
+        var dropdownMenu = document.querySelector('.dropdown-menu');
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.textContent = category.categoryName;
+        a.setAttribute('class', 'dropdown-item');
+        a.setAttribute('href', '#');
+        li.appendChild(a);
+        dropdownMenu.appendChild(li);
+        a.addEventListener('click', function () {
+          var button = document.querySelector('.dropdown-toggle');
+          button.textContent = category.categoryName;
+        });
+      });
+    }
+  })["catch"](function (error) {
+    console.error(error);
   });
 };
-
 
 /***/ }),
 
@@ -31582,6 +31582,134 @@ var attachLoginHandler = function attachLoginHandler() {
       createLoginMessage("Login failed. Please check your credentials and try again.");
     });
   });
+};
+
+/***/ }),
+
+/***/ "./src/modules/manageListings.js":
+/*!***************************************!*\
+  !*** ./src/modules/manageListings.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   manageListingsUi: () => (/* binding */ manageListingsUi)
+/* harmony export */ });
+/* harmony import */ var _firebase__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_firebase */ "./src/modules/_firebase.js");
+/* harmony import */ var firebase_database__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/database */ "./node_modules/firebase/database/dist/esm/index.esm.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+var manageListingsUi = function manageListingsUi() {
+  var main = document.querySelector("main");
+  var addNewListingSection = document.createElement("section");
+  addNewListingSection.classList.add("form", "d-flex", "flex-column", "justify-content-center", "align-items-center", "w-100");
+  var newListingFormContainer = document.createElement("div");
+  newListingFormContainer.classList.add("form__form-container", "d-flex", "flex-column", "justify-content-center", "align-items-center", "w-100");
+  newListingFormContainer.style.maxWidth = "600px";
+  var newListingForm = document.createElement("form");
+  newListingForm.setAttribute("id", "new-listing-form");
+  newListingForm.classList.add("w-100");
+  newListingForm.style.maxWidth = "600px";
+  var accordionForListings = document.createElement("div");
+  accordionForListings.classList.add("accordion", "w-100");
+  accordionForListings.setAttribute("id", "accordionExample");
+  var noListingsMessage = document.createElement("p");
+  noListingsMessage.textContent = "No listings yet.";
+  noListingsMessage.style.display = "none";
+  noListingsMessage.style.textAlign = "center";
+  accordionForListings.appendChild(noListingsMessage);
+  newListingForm.appendChild(accordionForListings);
+  newListingFormContainer.appendChild(newListingForm);
+  addNewListingSection.appendChild(newListingFormContainer);
+  main.appendChild(addNewListingSection);
+  var dbRef = (0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.ref)(_firebase__WEBPACK_IMPORTED_MODULE_0__.database);
+  (0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.get)((0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.child)(dbRef, "listings")).then(function (snapshot) {
+    if (snapshot.exists()) {
+      var listings = snapshot.val();
+      Object.entries(listings).forEach(function (_ref, index) {
+        var _ref2 = _slicedToArray(_ref, 2),
+          key = _ref2[0],
+          listing = _ref2[1];
+        var divForAccordion = document.createElement("div");
+        divForAccordion.classList.add("accordion-item");
+        var editListingButton = document.createElement("button");
+        editListingButton.setAttribute("type", "button");
+        editListingButton.classList.add("btn", "btn-outline-secondary", "w-50");
+        editListingButton.innerHTML = '<i class="bi bi-pencil"></i>';
+        var removeListingButton = document.createElement("button");
+        removeListingButton.setAttribute("type", "button");
+        removeListingButton.classList.add("btn", "btn-outline-secondary", "w-50");
+        removeListingButton.innerHTML = '<i class="bi bi-trash3-fill"></i>';
+        removeListingButton.addEventListener("click", function () {
+          removeListing(key, divForAccordion);
+        });
+        editListingButton.addEventListener("click", function () {
+          showEditModal(key, listing);
+        });
+        var collapseId = "collapse".concat(index);
+        divForAccordion.innerHTML = "\n            <h2 class=\"accordion-header\" id=\"heading".concat(index, "\">\n              <button id=\"spotForButtons\" class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#").concat(collapseId, "\" aria-expanded=\"false\" aria-controls=\"").concat(collapseId, "\">\n                ").concat(listing.listingTitle, "\n              </button>\n            </h2>\n            <div id=\"").concat(collapseId, "\" class=\"accordion-collapse collapse\" aria-labelledby=\"heading").concat(index, "\" data-bs-parent=\"#accordionExample\">\n              <div class=\"accordion-body\" style=\"word-wrap: break-word; white-space: pre-wrap;\">\n                Description: ").concat(listing.listingDescription, "\n                <img src=\"").concat(listing.listingImages, "\" alt=\"no photo\" width=\"300\" height=\"300\">\n                Price: ").concat(listing.listingPrice, " \u20AC\n              </div>\n            </div>\n          ");
+        var buttonContainer = document.createElement("div");
+        buttonContainer.classList.add("d-flex", "justify-content-center", "mt-2");
+        buttonContainer.appendChild(editListingButton);
+        buttonContainer.appendChild(removeListingButton);
+        divForAccordion.appendChild(buttonContainer);
+        accordionForListings.appendChild(divForAccordion);
+      });
+      noListingsMessage.style.display = "none";
+    } else {
+      noListingsMessage.style.display = "block";
+    }
+  })["catch"](function (error) {
+    console.error(error);
+  });
+  var removeListing = function removeListing(listingId, accordionItem) {
+    var listingRef = (0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.child)(dbRef, "listings/".concat(listingId));
+    (0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.remove)(listingRef).then(function () {
+      console.log("Listing removed successfully.");
+      accordionItem.remove();
+      if (accordionForListings.children.length === 1) {
+        noListingsMessage.style.display = "block";
+      }
+    })["catch"](function (error) {
+      console.error("Error removing listing: ", error);
+    });
+  };
+  var showEditModal = function showEditModal(listingId, listing) {
+    var modalHtml = "\n      <div class=\"modal fade\" id=\"editListingModal\" tabindex=\"-1\" aria-labelledby=\"editListingModalLabel\" aria-hidden=\"true\">\n        <div class=\"modal-dialog\">\n          <div class=\"modal-content\">\n            <div class=\"modal-header\">\n              <h5 class=\"modal-title\" id=\"editListingModalLabel\">Edit Listing</h5>\n              <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>\n            </div>\n            <div class=\"modal-body\">\n              <form id=\"edit-listing-form\">\n                <div class=\"mb-3\">\n                  <label for=\"listingTitle\" class=\"form-label\">Title</label>\n                  <input type=\"text\" class=\"form-control\" id=\"listingTitle\" value=\"".concat(listing.listingTitle, "\" required>\n                </div>\n                <div class=\"mb-3\">\n                  <label for=\"listingDescription\" class=\"form-label\">Description</label>\n                  <textarea class=\"form-control\" id=\"listingDescription\" rows=\"3\" required>").concat(listing.listingDescription, "</textarea>\n                </div>\n                <div class=\"mb-3\">\n                  <label for=\"listingPrice\" class=\"form-label\">Price</label>\n                  <input type=\"number\" class=\"form-control\" id=\"listingPrice\" value=\"").concat(listing.listingPrice, "\" required>\n                </div>\n                <button type=\"submit\" class=\"btn btn-primary\">Save changes</button>\n              </form>\n            </div>\n          </div>\n        </div>\n      </div>\n    ");
+    var modalContainer = document.createElement("div");
+    modalContainer.innerHTML = modalHtml;
+    document.body.appendChild(modalContainer);
+    var editListingModal = new bootstrap.Modal(document.getElementById('editListingModal'));
+    editListingModal.show();
+    var editListingForm = document.getElementById("edit-listing-form");
+    editListingForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var updatedListing = {
+        listingTitle: document.getElementById("listingTitle").value,
+        listingDescription: document.getElementById("listingDescription").value,
+        listingPrice: document.getElementById("listingPrice").value
+      };
+      updateListing(listingId, updatedListing, editListingModal);
+    });
+  };
+  var updateListing = function updateListing(listingId, updatedListing, modal) {
+    var listingRef = (0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.child)(dbRef, "listings/".concat(listingId));
+    (0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.update)(listingRef, updatedListing).then(function () {
+      console.log("Listing updated successfully.");
+      modal.hide();
+      location.reload();
+    })["catch"](function (error) {
+      console.error("Error updating listing: ", error);
+    });
+  };
 };
 
 /***/ }),
