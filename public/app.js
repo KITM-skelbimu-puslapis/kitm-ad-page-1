@@ -30946,14 +30946,15 @@ function getModularInstance(service) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_firebase__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/_firebase */ "./src/modules/_firebase.js");
-/* harmony import */ var _modules_addCategoriesToDb__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/addCategoriesToDb */ "./src/modules/addCategoriesToDb.js");
-/* harmony import */ var _modules_cardsCreation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/cardsCreation */ "./src/modules/cardsCreation.js");
-/* harmony import */ var _modules_displayNav_displaynav__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/displayNav/displaynav */ "./src/modules/displayNav/displaynav.js");
-/* harmony import */ var _modules_registrationForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/registrationForm */ "./src/modules/registrationForm.js");
-/* harmony import */ var _modules_loginForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/loginForm */ "./src/modules/loginForm.js");
-/* harmony import */ var _modules_listingForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/listingForm */ "./src/modules/listingForm.js");
-/* harmony import */ var _modules_listingAdd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/listingAdd */ "./src/modules/listingAdd.js");
-/* harmony import */ var _modules_manageListings__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/manageListings */ "./src/modules/manageListings.js");
+/* harmony import */ var _modules_cardsCreation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/cardsCreation */ "./src/modules/cardsCreation.js");
+/* harmony import */ var _modules_displayNav_displaynav__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/displayNav/displaynav */ "./src/modules/displayNav/displaynav.js");
+/* harmony import */ var _modules_registrationForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/registrationForm */ "./src/modules/registrationForm.js");
+/* harmony import */ var _modules_loginForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/loginForm */ "./src/modules/loginForm.js");
+/* harmony import */ var _modules_listingForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/listingForm */ "./src/modules/listingForm.js");
+/* harmony import */ var _modules_listingAdd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/listingAdd */ "./src/modules/listingAdd.js");
+/* harmony import */ var _modules_manageListings__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/manageListings */ "./src/modules/manageListings.js");
+/* harmony import */ var _modules_categoryManager__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/categoryManager */ "./src/modules/categoryManager.js");
+/* harmony import */ var _modules_categoryCrud__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/categoryCrud */ "./src/modules/categoryCrud.js");
 // JS modules imported:
 
 
@@ -30966,31 +30967,36 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// !!! Adding categories to DB (our hardcoded categories have been added; the function should only be called by an event listener, e.g. a button click):
-// addCategory(name, imageUrl);
 
 // Main application logic to render the page:
 // Homepage:
-(0,_modules_cardsCreation__WEBPACK_IMPORTED_MODULE_2__.createCards)(_modules_cardsCreation__WEBPACK_IMPORTED_MODULE_2__.items);
+(0,_modules_cardsCreation__WEBPACK_IMPORTED_MODULE_1__.createCards)(_modules_cardsCreation__WEBPACK_IMPORTED_MODULE_1__.items);
 
 // Registration:
-(0,_modules_registrationForm__WEBPACK_IMPORTED_MODULE_4__.renderRegistrationForm)();
-(0,_modules_registrationForm__WEBPACK_IMPORTED_MODULE_4__.registerUser)();
+(0,_modules_registrationForm__WEBPACK_IMPORTED_MODULE_3__.renderRegistrationForm)();
+(0,_modules_registrationForm__WEBPACK_IMPORTED_MODULE_3__.registerUser)();
 
 // Render the login form
-(0,_modules_loginForm__WEBPACK_IMPORTED_MODULE_5__.renderLoginForm)();
-(0,_modules_loginForm__WEBPACK_IMPORTED_MODULE_5__.attachLoginHandler)();
+(0,_modules_loginForm__WEBPACK_IMPORTED_MODULE_4__.renderLoginForm)();
+(0,_modules_loginForm__WEBPACK_IMPORTED_MODULE_4__.attachLoginHandler)();
 
 // Add new listing:
-(0,_modules_listingForm__WEBPACK_IMPORTED_MODULE_6__.listingForm)();
-(0,_modules_listingForm__WEBPACK_IMPORTED_MODULE_6__.renderListingCategories)(); // !!! Check this function when getting categories from DB for the navbar and category cards
-(0,_modules_listingAdd__WEBPACK_IMPORTED_MODULE_7__.validateAndAddListing)();
+(0,_modules_listingForm__WEBPACK_IMPORTED_MODULE_5__.listingForm)();
+(0,_modules_listingForm__WEBPACK_IMPORTED_MODULE_5__.renderListingCategories)(); // !!! Check this function when getting categories from DB for the navbar and category cards
+(0,_modules_listingAdd__WEBPACK_IMPORTED_MODULE_6__.validateAndAddListing)();
 
 //Check if logged in
-(0,_modules_displayNav_displaynav__WEBPACK_IMPORTED_MODULE_3__["default"])();
+(0,_modules_displayNav_displaynav__WEBPACK_IMPORTED_MODULE_2__["default"])();
 
 //----------------------------
-(0,_modules_manageListings__WEBPACK_IMPORTED_MODULE_8__.manageListingsUi)();
+// manageListingsUi()
+
+// Category manager:
+(0,_modules_categoryManager__WEBPACK_IMPORTED_MODULE_8__.categorySection)();
+(0,_modules_categoryManager__WEBPACK_IMPORTED_MODULE_8__.categoryManager)();
+(0,_modules_categoryCrud__WEBPACK_IMPORTED_MODULE_9__.addCategoryManagerRow)();
+(0,_modules_categoryCrud__WEBPACK_IMPORTED_MODULE_9__.deleteCategory)();
+(0,_modules_categoryCrud__WEBPACK_IMPORTED_MODULE_9__.editCategory)();
 
 /***/ }),
 
@@ -31050,7 +31056,7 @@ var database = (0,firebase_database__WEBPACK_IMPORTED_MODULE_2__.getDatabase)();
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   addCategory: () => (/* binding */ addCategory)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _firebase__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_firebase */ "./src/modules/_firebase.js");
 /* harmony import */ var firebase_database__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/database */ "./node_modules/firebase/database/dist/esm/index.esm.js");
@@ -31060,7 +31066,7 @@ __webpack_require__.r(__webpack_exports__);
 // To add categories and generate unique IDs for them:
 var addCategory = function addCategory(name, imageUrl) {
   try {
-    var newCategoryRef = (0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.push)((0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.ref)(_firebase__WEBPACK_IMPORTED_MODULE_0__.database, 'categories'));
+    var newCategoryRef = (0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.push)((0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.ref)(_firebase__WEBPACK_IMPORTED_MODULE_0__.database, "categories"));
     var id = newCategoryRef.key;
     (0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.set)(newCategoryRef, {
       categoryId: id,
@@ -31072,6 +31078,7 @@ var addCategory = function addCategory(name, imageUrl) {
     console.log("Category not added:", err);
   }
 };
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (addCategory);
 
 /***/ }),
 
@@ -31144,6 +31151,196 @@ function createCards(items) {
     container.appendChild(card);
   });
 }
+
+/***/ }),
+
+/***/ "./src/modules/categoryCrud.js":
+/*!*************************************!*\
+  !*** ./src/modules/categoryCrud.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   addCategoryManagerRow: () => (/* binding */ addCategoryManagerRow),
+/* harmony export */   deleteCategory: () => (/* binding */ deleteCategory),
+/* harmony export */   editCategory: () => (/* binding */ editCategory)
+/* harmony export */ });
+/* harmony import */ var _addCategoriesToDb__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addCategoriesToDb */ "./src/modules/addCategoriesToDb.js");
+/* harmony import */ var _firebase__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_firebase */ "./src/modules/_firebase.js");
+/* harmony import */ var firebase_database__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/database */ "./node_modules/firebase/database/dist/esm/index.esm.js");
+
+
+
+var addCategoryManagerRow = function addCategoryManagerRow() {
+  document.getElementById("add-category-btn").addEventListener("click", function (e) {
+    e.preventDefault();
+    var newRow = document.createElement("tr");
+    newRow.innerHTML = "\n          <td><input type=\"text\" value=\"\" id=\"new-ctaegory-name\" required/></td>\n          <td><input type=\"text\" value=\"\" id=\"new-ctaegory-image\" required/></td>\n          <td colspan=\"2\" id=\"save-btn-cell\"><a href=\"\" id=\"save-category-btn\"><i class=\"bi bi-check-square-fill\"></i></a></td>   \n        ";
+    document.getElementById("category-tbody").appendChild(newRow);
+    var saveBtn = document.getElementById("save-category-btn");
+    saveBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      var categoryName = document.getElementById("new-ctaegory-name");
+      categoryName.setAttribute("name", "category-name");
+      categoryName.setAttribute("required");
+      var categoryImage = document.getElementById("new-ctaegory-image");
+      categoryImage.setAttribute("name", "category-image");
+      categoryImage.setAttribute("required");
+      (0,_addCategoriesToDb__WEBPACK_IMPORTED_MODULE_0__["default"])(categoryName.value, categoryImage.value);
+      categoryName.disabled = true;
+      categoryImage.disabled = true;
+      categoryName.removeAttribute("id");
+      categoryImage.removeAttribute("id");
+      var editBtn = document.createElement("td");
+      editBtn.innerHTML = "<a href=\"\"><i class=\"bi bi-pencil\"></i></a>";
+      newRow.replaceChild(editBtn, document.getElementById("save-btn-cell"));
+      var deleteBtn = document.createElement("td");
+      deleteBtn.innerHTML = "<a href=\"\"><i class=\"bi bi-trash3-fill\"></i></a>";
+      newRow.appendChild(deleteBtn);
+      try {
+        var dbRef = (0,firebase_database__WEBPACK_IMPORTED_MODULE_2__.ref)(_firebase__WEBPACK_IMPORTED_MODULE_1__.database);
+        (0,firebase_database__WEBPACK_IMPORTED_MODULE_2__.get)((0,firebase_database__WEBPACK_IMPORTED_MODULE_2__.child)(dbRef, "categories")).then(function (snapshot) {
+          if (snapshot.exists()) {
+            var categories = Object.values(snapshot.val());
+            categories.map(function (category) {
+              if (categoryName.value === category.categoryName) {
+                newRow.setAttribute("data-category-id", category.categoryId);
+                console.log("ID attached to category row");
+              }
+            });
+          }
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    });
+  });
+};
+var deleteCategory = function deleteCategory() {
+  var categorySection = document.getElementById("category-section");
+  categorySection.addEventListener("click", function (e) {
+    e.preventDefault();
+    var target = e.target;
+    if (target.classList.contains("bi-trash3-fill")) {
+      var categoryToDelete = target.closest("tr").getAttribute("data-category-id");
+      var categoryRef = (0,firebase_database__WEBPACK_IMPORTED_MODULE_2__.ref)(_firebase__WEBPACK_IMPORTED_MODULE_1__.database, "categories/" + categoryToDelete);
+      (0,firebase_database__WEBPACK_IMPORTED_MODULE_2__.remove)(categoryRef).then(function () {
+        console.log("Removed category from database.");
+        target.closest("tr").remove();
+      })["catch"](function (error) {
+        console.error("Error removing category:", error);
+      });
+    }
+  });
+};
+var editCategory = function editCategory() {
+  var categorySection = document.getElementById("category-section");
+  categorySection.addEventListener("click", function (e) {
+    e.preventDefault();
+    var target = e.target;
+    if (target.classList.contains("bi-pencil")) {
+      var categoryToEdit = target.closest("tr").getAttribute("data-category-id");
+      var categoryNameInput = target.closest("tr").querySelector('input[name="category-name"]');
+      categoryNameInput.disabled = false;
+      var categoryImageInput = target.closest("tr").querySelector('input[name="category-image"]');
+      categoryImageInput.disabled = false;
+      var saveBtn = document.createElement("td");
+      saveBtn.setAttribute("colspan", "2");
+      saveBtn.id = "save-btn-cell";
+      saveBtn.innerHTML = "<a href=\"\" id=\"save-category-btn\"><i class=\"bi bi-check-square-fill\"></i></a>";
+      var buttonReplacement = target.closest("td");
+      var targetRow = target.closest("tr");
+      targetRow.replaceChild(saveBtn, buttonReplacement);
+      targetRow.removeChild(targetRow.lastElementChild);
+      document.getElementById("save-category-btn").addEventListener("click", function (e) {
+        e.preventDefault();
+        (0,firebase_database__WEBPACK_IMPORTED_MODULE_2__.set)((0,firebase_database__WEBPACK_IMPORTED_MODULE_2__.ref)(_firebase__WEBPACK_IMPORTED_MODULE_1__.database, "categories/" + categoryToEdit), {
+          categoryName: categoryNameInput.value,
+          categoryImageUrl: categoryImageInput.value,
+          categoryId: categoryToEdit
+        }).then(function () {
+          categoryNameInput.disabled = true;
+          categoryImageInput.disabled = true;
+          var editBtn = document.createElement("td");
+          editBtn.innerHTML = "<a href=\"\"><i class=\"bi bi-pencil\"></i></a>";
+          var deleteBtn = document.createElement("td");
+          deleteBtn.innerHTML = "<td><a href=\"\"><i class=\"bi bi-trash3-fill\"></i></a></td>";
+          targetRow.replaceChild(editBtn, saveBtn);
+          targetRow.appendChild(deleteBtn);
+          console.log("Updated category in database.");
+        })["catch"](function (error) {
+          console.error("Error updating category:", error);
+        });
+      });
+    }
+  });
+};
+
+/***/ }),
+
+/***/ "./src/modules/categoryManager.js":
+/*!****************************************!*\
+  !*** ./src/modules/categoryManager.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   categoryManager: () => (/* binding */ categoryManager),
+/* harmony export */   categorySection: () => (/* binding */ categorySection)
+/* harmony export */ });
+/* harmony import */ var _firebase__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_firebase */ "./src/modules/_firebase.js");
+/* harmony import */ var firebase_database__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/database */ "./node_modules/firebase/database/dist/esm/index.esm.js");
+/* harmony import */ var _categoryCrud__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./categoryCrud */ "./src/modules/categoryCrud.js");
+
+
+
+var categorySection = function categorySection() {
+  var main = document.querySelector("main");
+  var categorySection = document.createElement("section");
+  categorySection.id = "category-section";
+  var tableContainer = document.createElement("div");
+  tableContainer.classList.add("table-responsive", "w-100");
+  categorySection.classList.add("container", "category-manager"); // className
+  var categoryTable = document.createElement("table");
+  categoryTable.id = "category-table";
+  categoryTable.classList.add("table", "table-striped");
+  var tableHead = document.createElement("thead");
+  tableHead.innerHTML = "\n    <tr>\n    <th scope=\"col\" colspan=\"4\"><a href=\"\" id=\"add-category-btn\"><i class=\"bi bi-plus-square-fill\"></i></a></th>\n    </tr>\n    <tr>\n      <th scope=\"col\">Category Name</th>\n      <th scope=\"col\">Image URL</th>\n      <th scope=\"col\" colspan=\"2\">Options</th>\n    </tr>\n    ";
+  categoryTable.appendChild(tableHead);
+  tableContainer.appendChild(categoryTable);
+  categorySection.appendChild(tableContainer);
+  main.appendChild(categorySection);
+};
+var categoryManager = function categoryManager() {
+  var categoryTable = document.getElementById("category-table");
+  var tableBody = document.createElement("tbody");
+  tableBody.id = "category-tbody";
+  var dbRef = (0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.ref)(_firebase__WEBPACK_IMPORTED_MODULE_0__.database);
+  (0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.get)((0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.child)(dbRef, "categories")).then(function (snapshot) {
+    if (snapshot.exists()) {
+      var categories = Object.values(snapshot.val());
+      categories.map(function (category) {
+        var categoryRow = document.createElement("tr");
+        categoryRow.setAttribute("data-category-id", category.categoryId);
+        categoryRow.innerHTML = "\n          <td><input type=\"text\" value=\"".concat(category.categoryName, "\" name=\"category-name\" disabled/></td>\n          <td><input type=\"text\" value=\"").concat(category.categoryImageUrl, "\" name=\"category-image\" disabled/></td>\n          <td><a href=\"\"><i class=\"bi bi-pencil\"></i></a></td>\n          <td><a href=\"\"><i class=\"bi bi-trash3-fill\"></i></a></td>\n          ");
+        tableBody.appendChild(categoryRow);
+      });
+    }
+  }).then(function () {
+    categoryTable.appendChild(tableBody);
+  })
+  // .then(() => {
+  //   addCategoryManagerRow();
+  //   deleteCategory();
+  // })
+  ["catch"](function (error) {
+    console.error(error);
+  });
+};
 
 /***/ }),
 
