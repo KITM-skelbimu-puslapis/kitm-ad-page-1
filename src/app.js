@@ -9,6 +9,7 @@ import checkIfLoggedIn from "./modules/displayNav/displaynav";
 import { listingForm, renderListingCategories } from "./modules/listingForm";
 import { validateAndAddListing } from "./modules/listingAdd";
 import { manageListingsUi } from "./modules/manageListings";
+import { search } from "./modules/search";
 
 // !!! Adding categories to DB (our hardcoded categories have been added; the function should only be called by an event listener, e.g. a button click):
 // addCategory(name, imageUrl);
@@ -38,3 +39,8 @@ checkIfLoggedIn();
 
 //----------------------------
 manageListingsUi()
+
+
+
+// Search
+search()
