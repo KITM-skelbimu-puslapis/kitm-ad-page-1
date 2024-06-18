@@ -89,7 +89,7 @@ const loadCategoryListings = async (categoryCode, mainElement, categoryTitle) =>
 export function createCards(items) {
     const main = document.querySelector('main');
     const section = document.createElement('section');
-    section.className = 'container';
+    section.className = 'container, cards-section-container';
     const container = document.createElement('div');
     container.id = 'card-container';
     container.className = 'card-container';

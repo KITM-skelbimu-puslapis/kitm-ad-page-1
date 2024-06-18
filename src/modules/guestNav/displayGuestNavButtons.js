@@ -1,5 +1,8 @@
 import { createLoginButton } from "./navCreateLogin";
 import { createRegisterButton } from "./navCreateRegister";
+import { renderLoginForm, attachLoginHandler } from "../loginForm";
+import { renderRegistrationForm, registerUser } from "../registrationForm";
+
 const guestNavButtonsDisplay = () => {
     const spotForAddNewListingButton = document.querySelector('#replace');
     const div = document.createElement('div');
@@ -9,5 +12,17 @@ const guestNavButtonsDisplay = () => {
     div.appendChild(loginButton);
     div.appendChild(registerButton);
     spotForAddNewListingButton.appendChild(div);
+    document.getElementById("login-btn").addEventListener("click", (e) => {
+        e.preventDefault();
+        document.querySelector("main").innerHTML = "";
+        renderLoginForm();
+        attachLoginHandler();
+    })
+    document.getElementById("register-btn").addEventListener("click", (e) => {
+        e.preventDefault();
+        document.querySelector("main").innerHTML = "";
+        renderRegistrationForm();
+        registerUser();
+    })
 }
 export { guestNavButtonsDisplay };

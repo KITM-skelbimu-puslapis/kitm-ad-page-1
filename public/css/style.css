@@ -11987,12 +11987,14 @@ textarea.form-control-lg {
   color: #919294;
 }
 
-.container {
+.cards-section-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   padding: 1rem;
+  width: 100%;
+  height: 100vh;
 }
 
 .card-container {
@@ -12237,6 +12239,13 @@ textarea.form-control-lg {
     opacity: 0;
     z-index: -1;
   }
+}
+.category-manager {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .category-manager input {
   background-color: #ffffff;

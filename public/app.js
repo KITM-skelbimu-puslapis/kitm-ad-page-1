@@ -30968,30 +30968,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// !!! Adding categories to DB (our hardcoded categories have been added; the function should only be called by an event listener, e.g. a button click):
-// addCategory(name, imageUrl);
-
 // Main application logic to render the page:
 // Homepage:
-(0,_modules_cardsCreation__WEBPACK_IMPORTED_MODULE_1__.createCards)(_modules_cardsCreation__WEBPACK_IMPORTED_MODULE_1__.items);
-
-// Registration:
-(0,_modules_registrationForm__WEBPACK_IMPORTED_MODULE_3__.renderRegistrationForm)();
-(0,_modules_registrationForm__WEBPACK_IMPORTED_MODULE_3__.registerUser)();
-
-// Render the login form
-// renderLoginForm();
-// attachLoginHandler();
-
-// Add new listing:
-(0,_modules_listingForm__WEBPACK_IMPORTED_MODULE_4__.listingForm)();
-(0,_modules_listingForm__WEBPACK_IMPORTED_MODULE_4__.renderListingCategories)(); // !!! Check this function when getting categories from DB for the navbar and category cards
-(0,_modules_listingAdd__WEBPACK_IMPORTED_MODULE_5__.validateAndAddListing)();
-
-//Check if logged in
 (0,_modules_displayNav_displaynav__WEBPACK_IMPORTED_MODULE_2__["default"])();
+(0,_modules_cardsCreation__WEBPACK_IMPORTED_MODULE_1__.createCards)(_modules_cardsCreation__WEBPACK_IMPORTED_MODULE_1__.items);
+(0,_modules_search__WEBPACK_IMPORTED_MODULE_9__.search)();
 
-//----------------------------
+// To be attached to event listeners in the Navbar:
+// Listing manager:
 (0,_modules_manageListings__WEBPACK_IMPORTED_MODULE_6__.manageListingsUi)();
 
 // Category manager:
@@ -31000,9 +30984,6 @@ __webpack_require__.r(__webpack_exports__);
 (0,_modules_categoryCrud__WEBPACK_IMPORTED_MODULE_8__.addCategoryManagerRow)();
 (0,_modules_categoryCrud__WEBPACK_IMPORTED_MODULE_8__.deleteCategory)();
 (0,_modules_categoryCrud__WEBPACK_IMPORTED_MODULE_8__.editCategory)();
-
-// Search
-(0,_modules_search__WEBPACK_IMPORTED_MODULE_9__.search)();
 
 /***/ }),
 
@@ -31232,7 +31213,7 @@ var loadCategoryListings = /*#__PURE__*/function () {
 function createCards(items) {
   var main = document.querySelector('main');
   var section = document.createElement('section');
-  section.className = 'container';
+  section.className = 'container, cards-section-container';
   var container = document.createElement('div');
   container.id = 'card-container';
   container.className = 'card-container';
@@ -31722,6 +31703,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _navCreateLogin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navCreateLogin */ "./src/modules/guestNav/navCreateLogin.js");
 /* harmony import */ var _navCreateRegister__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./navCreateRegister */ "./src/modules/guestNav/navCreateRegister.js");
+/* harmony import */ var _loginForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../loginForm */ "./src/modules/loginForm.js");
+/* harmony import */ var _registrationForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../registrationForm */ "./src/modules/registrationForm.js");
+
+
 
 
 var guestNavButtonsDisplay = function guestNavButtonsDisplay() {
@@ -31733,6 +31718,18 @@ var guestNavButtonsDisplay = function guestNavButtonsDisplay() {
   div.appendChild(loginButton);
   div.appendChild(registerButton);
   spotForAddNewListingButton.appendChild(div);
+  document.getElementById("login-btn").addEventListener("click", function (e) {
+    e.preventDefault();
+    document.querySelector("main").innerHTML = "";
+    (0,_loginForm__WEBPACK_IMPORTED_MODULE_2__.renderLoginForm)();
+    (0,_loginForm__WEBPACK_IMPORTED_MODULE_2__.attachLoginHandler)();
+  });
+  document.getElementById("register-btn").addEventListener("click", function (e) {
+    e.preventDefault();
+    document.querySelector("main").innerHTML = "";
+    (0,_registrationForm__WEBPACK_IMPORTED_MODULE_3__.renderRegistrationForm)();
+    (0,_registrationForm__WEBPACK_IMPORTED_MODULE_3__.registerUser)();
+  });
 };
 
 
@@ -31754,6 +31751,7 @@ var createLoginButton = function createLoginButton() {
   loginButton.setAttribute('class', 'btn btn-white');
   loginButton.setAttribute('type', 'button');
   loginButton.setAttribute('href', '#');
+  loginButton.setAttribute('id', 'login-btn');
   loginButton.textContent = 'Login';
   return loginButton;
 };
@@ -31777,6 +31775,7 @@ var createRegisterButton = function createRegisterButton() {
   registerButton.setAttribute('class', 'btn btn-white');
   registerButton.setAttribute('type', 'button');
   registerButton.setAttribute('href', '#');
+  registerButton.setAttribute('id', 'register-btn');
   registerButton.textContent = 'Register';
   return registerButton;
 };
@@ -32005,7 +32004,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var firebase_database__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/database */ "./node_modules/firebase/database/dist/esm/index.esm.js");
 /* harmony import */ var _firebase__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_firebase */ "./src/modules/_firebase.js");
 /* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/auth */ "./node_modules/firebase/auth/dist/esm/index.esm.js");
+/* harmony import */ var _cardsCreation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./cardsCreation */ "./src/modules/cardsCreation.js");
 // login.js
+
 
 
 
@@ -32047,11 +32048,12 @@ var attachLoginHandler = function attachLoginHandler() {
     (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.signInWithEmailAndPassword)(auth, email, password).then(function (userCredential) {
       var user = userCredential.user;
       var loginTime = new Date().toLocaleString();
-      (0,firebase_database__WEBPACK_IMPORTED_MODULE_0__.update)((0,firebase_database__WEBPACK_IMPORTED_MODULE_0__.ref)(_firebase__WEBPACK_IMPORTED_MODULE_1__.database, 'users/' + user.uid), {
+      (0,firebase_database__WEBPACK_IMPORTED_MODULE_0__.update)((0,firebase_database__WEBPACK_IMPORTED_MODULE_0__.ref)(_firebase__WEBPACK_IMPORTED_MODULE_1__.database, "users/" + user.uid), {
         lastLogin: loginTime
       });
-      createLoginMessage("Login successful! Welcome back.");
       console.log("Logged in successfully:", user);
+      document.querySelector("main").innerHTML = "";
+      (0,_cardsCreation__WEBPACK_IMPORTED_MODULE_3__.createCards)(_cardsCreation__WEBPACK_IMPORTED_MODULE_3__.items);
     })["catch"](function (error) {
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -32570,17 +32572,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _navCreateAddNewListing__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navCreateAddNewListing */ "./src/modules/userNav/navCreateAddNewListing.js");
 /* harmony import */ var _navCreateMyAccount__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./navCreateMyAccount */ "./src/modules/userNav/navCreateMyAccount.js");
+/* harmony import */ var _listingForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../listingForm */ "./src/modules/listingForm.js");
+/* harmony import */ var _listingAdd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../listingAdd */ "./src/modules/listingAdd.js");
+
+
 
 
 var userNavButtonsDisplay = function userNavButtonsDisplay() {
-  var spotForAddNewListingButton = document.querySelector('#replace');
-  var div = document.createElement('div');
-  div.setAttribute('class', 'nav-item d-flex flex-row justify-content-center align-items-center align-self-center text-center');
+  var spotForAddNewListingButton = document.querySelector("#replace");
+  var div = document.createElement("div");
+  div.setAttribute("class", "nav-item d-flex flex-row justify-content-center align-items-center align-self-center text-center");
   var addNewListingButton = (0,_navCreateAddNewListing__WEBPACK_IMPORTED_MODULE_0__.createAddNewListingButton)();
   var myAccountButton = (0,_navCreateMyAccount__WEBPACK_IMPORTED_MODULE_1__.createMyAccountButton)();
   div.appendChild(addNewListingButton);
   div.appendChild(myAccountButton);
   spotForAddNewListingButton.appendChild(div);
+  document.getElementById("add-listing-btn").addEventListener("click", function (e) {
+    e.preventDefault();
+    document.querySelector("main").innerHTML = "";
+    (0,_listingForm__WEBPACK_IMPORTED_MODULE_2__.listingForm)();
+    (0,_listingForm__WEBPACK_IMPORTED_MODULE_2__.renderListingCategories)();
+    (0,_listingAdd__WEBPACK_IMPORTED_MODULE_3__.validateAndAddListing)();
+  });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (userNavButtonsDisplay);
 
@@ -32602,6 +32615,7 @@ var createAddNewListingButton = function createAddNewListingButton() {
   AddNewListingButton.setAttribute('class', 'btn btn-white');
   AddNewListingButton.setAttribute('type', 'button');
   AddNewListingButton.setAttribute('href', '#');
+  AddNewListingButton.setAttribute('id', 'add-listing-btn');
   var icon = document.createElement('i');
   icon.innerHTML = '<i class="bi bi-bag-plus-fill"></i>';
   AddNewListingButton.appendChild(icon);
@@ -32623,6 +32637,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   createMyAccountButton: () => (/* binding */ createMyAccountButton)
 /* harmony export */ });
 /* harmony import */ var _signOut__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../signOut */ "./src/modules/signOut.js");
+/* harmony import */ var _manageListings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../manageListings */ "./src/modules/manageListings.js");
+
 
 var createDropdownMenu = function createDropdownMenu(items) {
   var dropdownUl = document.createElement('ul');
@@ -32637,6 +32653,7 @@ var createDropdownMenu = function createDropdownMenu(items) {
       liA.addEventListener('click', _signOut__WEBPACK_IMPORTED_MODULE_0__.signOutCreate);
       liA.addEventListener('click', function () {});
     }
+    // nesuprantu kaip cia priattachinti manageListingsUi() - labai neaiskiai sudeti mygtukai
     li.appendChild(liA);
     li.appendChild(liA);
     dropdownUl.appendChild(li);

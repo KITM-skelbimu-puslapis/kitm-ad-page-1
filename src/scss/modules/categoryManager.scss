@@ -1,7 +1,12 @@
 @import '_variables';
-
+@import '_mixins';
 
 .category-manager {
+    @include size(100%, 100vh);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     input {
         background-color: $white;
         border: 1px solid $main-grey;
