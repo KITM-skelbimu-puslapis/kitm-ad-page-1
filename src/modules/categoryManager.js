@@ -1,21 +1,20 @@
 import { database } from "./_firebase";
 import { ref, child, get } from "firebase/database";
-import { addCategoryManagerRow, deleteCategory } from "./categoryCrud";
 
-export const categorySection = () => {
+export const createCategorySection = () => {
   const main = document.querySelector("main");
   const categorySection = document.createElement("section");
   categorySection.id = "category-section";
   const tableContainer = document.createElement("div");
   tableContainer.classList.add("table-responsive", "w-100");
-  categorySection.classList.add("container", "category-manager"); // className
+  categorySection.classList.add("container", "category-manager", "category-manager"); // className
   const categoryTable = document.createElement("table");
   categoryTable.id = "category-table";
   categoryTable.classList.add("table", "table-striped");
   const tableHead = document.createElement("thead");
   tableHead.innerHTML = `
     <tr>
-    <th scope="col" colspan="4"><a href="" id="add-category-btn"><i class="bi bi-plus-square-fill"></i></a></th>
+    <th scope="col" colspan="4"><a href="" id="add-category-btn" class="link-style"><i class="bi bi-plus-square-fill"></i></a></th>
     </tr>
     <tr>
       <th scope="col">Category Name</th>
@@ -29,7 +28,7 @@ export const categorySection = () => {
   main.appendChild(categorySection);
 };
 
-export const categoryManager = () => {
+export const loadCategoryManager = () => {
   const categoryTable = document.getElementById("category-table");
   const tableBody = document.createElement("tbody");
   tableBody.id = "category-tbody";
@@ -44,8 +43,8 @@ export const categoryManager = () => {
           categoryRow.innerHTML = `
           <td><input type="text" value="${category.categoryName}" name="category-name" disabled/></td>
           <td><input type="text" value="${category.categoryImageUrl}" name="category-image" disabled/></td>
-          <td><a href=""><i class="bi bi-pencil"></i></a></td>
-          <td><a href=""><i class="bi bi-trash3-fill"></i></a></td>
+          <td><a href="" class="link-style"><i class="bi bi-pencil-fill"></i></a></td>
+          <td><a href="" class="link-style"><i class="bi bi-trash3-fill"></i></a></td>
           `;
           tableBody.appendChild(categoryRow);
         });
@@ -54,10 +53,6 @@ export const categoryManager = () => {
     .then(() => {
       categoryTable.appendChild(tableBody);
     })
-    // .then(() => {
-    //   addCategoryManagerRow();
-    //   deleteCategory();
-    // })
     .catch((error) => {
       console.error(error);
     });

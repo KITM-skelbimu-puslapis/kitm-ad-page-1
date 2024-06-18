@@ -1,0 +1,17 @@
+@import '_variables';
+
+
+.category-manager {
+    input {
+        background-color: $white;
+        border: 1px solid $main-grey;
+        @include border-radius;
+        text-overflow: ellipsis;
+
+    }
+
+    input:disabled {
+        background-color: transparent;
+        border: 1px solid transparent;
+    }
+}

@@ -1,6 +1,8 @@
 import { app, database } from "./_firebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, set, child, get } from "firebase/database";
+import { renderLoginForm, attachLoginHandler } from "./loginForm";
+
 
 // To render the registration form:
 export const renderRegistrationForm = () => {
@@ -13,6 +15,7 @@ export const renderRegistrationForm = () => {
     "justify-content-center",
     "align-items-center"
   );
+  registrationSection.id = "registration-section";
   const registrationContainer = document.createElement("div");
   registrationContainer.classList.add(
     "form__form-container",
@@ -116,13 +119,18 @@ const sendUserData = () => {
         role: "regularUser",
         registrationDate: new Date().toLocaleString(),
       });
-      createRegistrationMessage("Success! Thank you for registering.");
+      createRegistrationMessage("Success! Thank you for registering. You'll be redirected shortly.");
       console.log("User created");
       email.value = "";
       password.value = "";
       username.value = "";
       document.getElementById("register-checkbox-terms").checked = false;
       document.getElementById("register-checkbox-privacy").checked = false;
+      setTimeout(() => {
+        document.querySelector("main").removeChild(document.getElementById("registration-section"));
+        renderLoginForm();
+        attachLoginHandler();
+      }, 5000)
     })
     .catch((error) => {
       const errorCode = error.code;
