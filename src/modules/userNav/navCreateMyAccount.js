@@ -1,4 +1,5 @@
 import { signOutCreate } from "../signOut";
+import { manageListingsUi } from "../manageListings";
 const createDropdownMenu = (items) => {
     const dropdownUl = document.createElement('ul');
     dropdownUl.setAttribute('class', 'dropdown-menu');
@@ -13,6 +14,7 @@ const createDropdownMenu = (items) => {
             liA.addEventListener('click', ()=>{
             });     
         }
+        // nesuprantu kaip cia priattachinti manageListingsUi() - labai neaiskiai sudeti mygtukai
         li.appendChild(liA);
         li.appendChild(liA);
         dropdownUl.appendChild(li);

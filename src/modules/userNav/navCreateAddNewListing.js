@@ -3,6 +3,7 @@ const createAddNewListingButton = () => {
     AddNewListingButton.setAttribute('class', 'btn btn-white');
     AddNewListingButton.setAttribute('type', 'button');
     AddNewListingButton.setAttribute('href', '#');
+    AddNewListingButton.setAttribute('id', 'add-listing-btn');
     const icon = document.createElement('i');
     icon.innerHTML = '<i class="bi bi-bag-plus-fill"></i>';
     AddNewListingButton.appendChild(icon);

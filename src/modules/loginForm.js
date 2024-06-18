@@ -2,16 +2,29 @@
 import { ref, update } from "firebase/database";
 import { app, database } from "./_firebase";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { createCards, items } from "./cardsCreation";
 
 // To render the login form:
 export const renderLoginForm = () => {
   const main = document.querySelector("main");
   const loginSection = document.createElement("section");
-  loginSection.classList.add("login-form", "d-flex", "flex-column", "justify-content-center", "align-items-center");
-  
+  loginSection.classList.add(
+    "login-form",
+    "d-flex",
+    "flex-column",
+    "justify-content-center",
+    "align-items-center"
+  );
+
   const loginContainer = document.createElement("div");
-  loginContainer.classList.add("login-form__form-container", "d-flex", "flex-column", "justify-content-center", "align-items-center");
-  
+  loginContainer.classList.add(
+    "login-form__form-container",
+    "d-flex",
+    "flex-column",
+    "justify-content-center",
+    "align-items-center"
+  );
+
   const loginForm = document.createElement("form");
   loginForm.setAttribute("id", "login-form");
   loginForm.innerHTML = `
@@ -26,13 +39,11 @@ export const renderLoginForm = () => {
     <div class="d-flex justify-content-center mb-3">
       <button type="submit" id="login-btn" class="btn btn-secondary">Login</button>
     </div>`;
-  
+
   loginContainer.appendChild(loginForm);
   loginSection.appendChild(loginContainer);
   main.appendChild(loginSection);
-  
 };
-
 
 // To create a login message:
 const createLoginMessage = (text) => {
@@ -57,18 +68,21 @@ export const attachLoginHandler = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        const loginTime = new Date().toLocaleString()
-        update(ref(database, 'users/' + user.uid), {
-          lastLogin: loginTime
+        const loginTime = new Date().toLocaleString();
+        update(ref(database, "users/" + user.uid), {
+          lastLogin: loginTime,
         });
-        createLoginMessage("Login successful! Welcome back.");
         console.log("Logged in successfully:", user);
+        document.querySelector("main").innerHTML = "";
+        createCards(items);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.error("Login failed:", errorCode, errorMessage);
-        createLoginMessage("Login failed. Please check your credentials and try again.");
+        createLoginMessage(
+          "Login failed. Please check your credentials and try again."
+        );
       });
   });
 };

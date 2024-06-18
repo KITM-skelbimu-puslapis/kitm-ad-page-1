@@ -14,30 +14,14 @@ import { createCategorySection, loadCategoryManager } from "./modules/categoryMa
 import { addCategoryManagerRow, deleteCategory, editCategory } from "./modules/categoryCrud";
 import { search } from "./modules/search";
 
-// !!! Adding categories to DB (our hardcoded categories have been added; the function should only be called by an event listener, e.g. a button click):
-// addCategory(name, imageUrl);
-
 // Main application logic to render the page:
 // Homepage:
-createCards(items);
-
-// Registration:
-renderRegistrationForm();
-registerUser();
-
-// Render the login form
-// renderLoginForm();
-// attachLoginHandler();
-
-// Add new listing:
-listingForm();
-renderListingCategories(); // !!! Check this function when getting categories from DB for the navbar and category cards
-validateAndAddListing();
-
-//Check if logged in
 checkIfLoggedIn();
+createCards(items);
+search()
 
-//----------------------------
+// To be attached to event listeners in the Navbar:
+// Listing manager:
 manageListingsUi()
 
 // Category manager:
@@ -46,6 +30,3 @@ loadCategoryManager();
 addCategoryManagerRow(); 
 deleteCategory();
 editCategory();
-
-// Search
-search()

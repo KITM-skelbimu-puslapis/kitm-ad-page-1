@@ -1,12 +1,13 @@
 @import '_variables';
 @import '_mixins';
 
-.container {
+.cards-section-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap; 
     padding: 1rem;
+    @include size(100%, 100vh);
 }
 
 .card-container {
